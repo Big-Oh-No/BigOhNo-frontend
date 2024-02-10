@@ -4,8 +4,13 @@
 <img src="./images/use_case_model.png">
 </a>
 
+
  ## DFD Level 0
 <img src="./images/DFD_Img.png">
+
+## DFD Level 1
+
+<img src="./images/DFD1.png">
 
 ## Getting Started
 To run the frontend, first install the packages in `node_modules` directory by running
