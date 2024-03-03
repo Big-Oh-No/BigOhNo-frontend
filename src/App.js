@@ -1,8 +1,12 @@
 import Demo from "./components/Demo";
+import { Login } from "./Login";
+import { Register } from "./Register";
 
 function App() {
   return (
-      <Demo />
+      <div className="App">
+        <Login />
+      </div>
   );
 }
 
