@@ -16,7 +16,7 @@ export default function SignInForm() {
   };
 
   return (
-    <div className="w-full h-full flex flex-col justify-center">
+    <div className="w-full h-full flex flex-col justify-center ">
       <div class="text-5xl font-bold">Sign In</div>
       <div className="flex flex-col mt-10 space-y-3 pl-3">
         <div className="text-xl font-semibold">Email</div>
