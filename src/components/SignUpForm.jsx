@@ -45,12 +45,13 @@ export default function SignUpForm() {
           Admin
         </div>
       </div>
-      {
-        // buttonValue === "none" ? null: (buttonValue === "teacher" || buttonValue === "admin" ? <div>Staff</div> : (true ?<div>Student</div>))
-       
-      }
+      {/* {
+         buttonValue === "none" ? null: (buttonValue === "teacher" || buttonValue === "admin" ? <div className="flex flex-col mt-5">
+          <div className=" font-semibold text-xl">Staff Number</div>
+          <input className="w-[45%] px-5 focus:outline-none bg-light-theme border-[0.075rem] border-black h-14 rounded-xl text-xl"></input>
+         </div> : (<div>Student</div>))
+      } */}
       </div>
-      
     </div>
   );
 }
