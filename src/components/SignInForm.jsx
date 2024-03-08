@@ -9,6 +9,7 @@ export default function SignInForm() {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errMsg, setErrMsg] = useState("404 Not found")
 
   const submitForm = (email, password) => {
     console.log(email);
