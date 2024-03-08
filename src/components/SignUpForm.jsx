@@ -73,9 +73,12 @@ export default function SignUpForm() {
           </div>
         </div>
       </div>
-      <div className="flex items-center justify-center w-[25%] mt-16 ml-72 rounded-full border-black font-inter text-2xl bg-dark-theme font-semibold hover:cursor-pointer py-3 hover:bg-light-theme border border-transparent hover:border-black text-white hover:text-black transition duration-500 hover:scale-125 select-none">
+      <div className="flex flex-row justify-center">
+      <div className="flex items-center justify-center w-[25%] mt-16 rounded-full border-black font-inter text-2xl bg-dark-theme font-semibold hover:cursor-pointer py-3 hover:bg-light-theme border border-transparent hover:border-black text-white hover:text-black transition duration-500 hover:scale-125 select-none">
             Submit
       </div>
+      </div>
+     
     </div>
   );
 }
