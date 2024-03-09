@@ -20,11 +20,11 @@ export default function SignInForm() {
   const warn = (email, password) => {
     if (!email) {
       setErrorMessage("Please enter a valid email!");
-      console.log("Email Missing!")
+      // console.log("Email Missing!")
       return;
     } else if (!password) {
       setErrorMessage("Please enter a valid password!");
-      console.log("Password Missing!")
+      // console.log("Password Missing!")
       return;
     }
     navigate("/Dashboard");
