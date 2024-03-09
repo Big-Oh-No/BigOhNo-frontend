@@ -14,7 +14,7 @@ export default function OnHold() {
           <div className="absolute bottom-36  text-inter text-5xl font-semibold">
             Contact Us:
           </div>
-          <div className="text-inter underline absolute bottom-20 text-4xl mt-8">
+          <div className="text-inter underline absolute bottom-20 text-4xl mt-8 hover:cursor-pointer">
             admin@korse.com
           </div>
         </div>
