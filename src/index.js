@@ -4,6 +4,7 @@ import './index.css';
 import SignIn from './routes/SignIn';
 import SignUp from './routes/SignUp';
 import Dashboard from './routes/Dashboard';
+import OnHold from './routes/OnHold';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -24,8 +25,15 @@ const router = createBrowserRouter([
     element: <Dashboard />
   },
   {
+
+    path: "/on_hold",
+    element: <OnHold />
+    
+  },
+  {
     path: "*",
     element: <NotFound />
+
   }
 ]);
 
