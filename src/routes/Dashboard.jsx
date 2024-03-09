@@ -4,12 +4,12 @@ import { useNavigate } from "react-router-dom";
 
 export default function Dashboard() {
   const navigate = useNavigate();
-
+  
   useEffect(() => {
       init();
       }, []);
 
-  const init = async () => {console.log("EEEbbb");
+  const init = async () => {
     const data = JSON.parse(localStorage.getItem("AuthCookie"));
     if (data == null) {
       navigate("/");
@@ -31,7 +31,6 @@ export default function Dashboard() {
         });
 
         if (response.status === 200) {
-          console.log("EEE")
           return;
         } else {
           localStorage.removeItem("AuthCookie");
@@ -39,7 +38,6 @@ export default function Dashboard() {
           return;
         }
       } catch (error) {
-          console.log("bbbb")
           console.log(error)
         localStorage.removeItem("AuthCookie");
         navigate("/");
