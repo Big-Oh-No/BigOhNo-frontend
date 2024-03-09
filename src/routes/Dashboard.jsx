@@ -5,10 +5,15 @@ import { useNavigate } from "react-router-dom";
 export default function Dashboard() {
   const navigate = useNavigate();
 
-  useEffect(async () => {
-    const data = await (localStorage.getItem("AuthCookie")).JSON;
+  useEffect(() => {
+      init();
+      }, []);
+
+  const init = async () => {console.log("EEEbbb");
+    const data = JSON.parse(localStorage.getItem("AuthCookie"));
     if (data == null) {
       navigate("/");
+      return;
     } else {
       const email = data["email"];
       const password = data["password"];
@@ -26,16 +31,22 @@ export default function Dashboard() {
         });
 
         if (response.status === 200) {
+          console.log("EEE")
+          return;
         } else {
           localStorage.removeItem("AuthCookie");
           navigate("/");
+          return;
         }
       } catch (error) {
+          console.log("bbbb")
+          console.log(error)
         localStorage.removeItem("AuthCookie");
         navigate("/");
+        return;
       }
     }
-  }, []);
+  } 
   return (
     <div className="">
       <DasboardLayout />

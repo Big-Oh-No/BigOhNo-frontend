@@ -4,11 +4,11 @@ import { useEffect } from "react";
 
 export default function SignIn() {
     const navigate = useNavigate();
-  useEffect(() => {
-    if(localStorage.getItem("AuthCookie")){
-      navigate("/dashboard");
-    }
-  }, [])
+    useEffect(() => {
+      if(localStorage.getItem("AuthCookie")){
+        navigate("/dashboard");
+      }
+    }, [])
 
   return (
     <div className="w-screen h-screen bg-white">
