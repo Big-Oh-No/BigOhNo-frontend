@@ -1,0 +1,5 @@
+use async when using await keyword
+await keyword for waiting until you get a response from the server
+fetch keyword two parameter, 1. URL 2. json data
+if there is any error, you will get in the key of the detail
+use effect is a function which runs before rendering UI
