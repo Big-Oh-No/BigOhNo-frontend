@@ -1,8 +1,14 @@
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import SignInForm from "../components/SignInForm";
+import { useEffect } from "react";
 
 export default function SignIn() {
-  //   const navigate = useNavigate();
+    const navigate = useNavigate();
+  useEffect(() => {
+    if(localStorage.getItem("AuthCookie")){
+      navigate("/dashboard");
+    }
+  }, [])
 
   return (
     <div className="w-screen h-screen bg-white">
