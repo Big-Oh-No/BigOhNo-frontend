@@ -9,6 +9,7 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import NotFound from './routes/NotFound';
 
 const router = createBrowserRouter([
   {
@@ -24,10 +25,16 @@ const router = createBrowserRouter([
     element: <Dashboard />
   },
   {
+
     path: "/on_hold",
     element: <OnHold />
+    
+  },
+  {
+    path: "*",
+    element: <NotFound />
+
   }
-]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

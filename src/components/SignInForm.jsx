@@ -9,15 +9,31 @@ export default function SignInForm() {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+
 
   const submitForm = (email, password) => {
+    warn(email,password);
     console.log(email);
     console.log(password);
   };
 
+  const warn = (email, password) => {
+    if (!email) {
+      setErrorMessage("Please enter a valid email!");
+      // console.log("Email Missing!")
+      return;
+    } else if (!password) {
+      setErrorMessage("Please enter a valid password!");
+      // console.log("Password Missing!")
+      return;
+    }
+    navigate("/Dashboard");
+  }
+
   return (
     <div className="w-full h-full flex flex-col justify-center ">
-      <div class="text-5xl font-bold">Sign In</div>
+      <div className="text-5xl font-bold">Sign In</div>
       <div className="flex flex-col mt-10 space-y-3 pl-3">
         <div className="text-xl font-semibold">Email</div>
         <input
@@ -66,12 +82,16 @@ export default function SignInForm() {
       <div className="flex flex-row justify-center mt-12">
         <div
           className="flex justify-center items-center text-white bg-dark-theme text-2xl w-[25%] py-3 rounded-full border-[0.075rem] border-transparent hover:bg-light-theme hover:border-[0.075rem] hover:border-black font-semibold hover:cursor-pointer hover:text-dark-theme transition duration-500"
-          onClick={() => {submitForm(email, password);
-                          navigate("/Dashboard")}}
+          onClick={() => {
+            submitForm(email, password);
+          }}
         >
           Sign In
         </div>
       </div>
+      {errorMessage && (
+        <div className="flex justify-center items-center mt-4 text-red-500">{errorMessage}</div>
+      )}
     </div>
   );
 }
