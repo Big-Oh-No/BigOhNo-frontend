@@ -1,8 +1,14 @@
 import SignUpForm from "../components/SignUpForm";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function SignUp() {
   const navigate = useNavigate();
+  useEffect(() => {
+    if(localStorage.getItem("AuthCookie")){
+      navigate("/dashboard");
+    }
+  }, [])
   return (
     <div className="w-screen h-screen bg-white">
       <img
