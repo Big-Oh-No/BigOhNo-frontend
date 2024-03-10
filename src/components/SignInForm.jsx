@@ -14,7 +14,7 @@ export default function SignInForm() {
   const submitForm = async () => {
     if (isValid()) {
       try{
-        const response = await fetch("http://142.231.92.61:8000/user/login", {
+        const response = await fetch(`${process.env.REACT_APP_BACKEND}/user/login`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
