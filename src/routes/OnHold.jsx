@@ -1,4 +1,53 @@
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
+
 export default function OnHold() {
+  const navigate = useNavigate();
+  useEffect(() => {
+    init();
+  },[])
+const init = async() => {
+  const data = JSON.parse(localStorage.getItem('AuthCookie'));
+    if(data === null){
+      navigate("/");
+      return;
+    }const email = data["email"];
+      const password = data["password"];
+
+      try {
+        const response = await fetch(`${process.env.REACT_APP_BACKEND}/user/check`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: email,
+            password: password,
+          }),
+        });
+
+        if (response.status === 200) {
+          navigate("/dashboard")
+          return;
+        } else if(response.status === 409){
+          localStorage.removeItem("AuthCookie");
+          navigate("/");
+          return;
+        } else if(response.status === 417){
+          return;
+        }else{
+          localStorage.removeItem("AuthCookie");
+          navigate("/");
+        }
+      } catch (error) {
+        console.log(error)
+        localStorage.removeItem("AuthCookie");
+        navigate("/");
+        return;
+      }
+}
   return (
     <div className="">
       <div className="font-semibold font-inter h-screen w-screen flex flex-row pl-16 pt-16">
@@ -20,14 +69,13 @@ export default function OnHold() {
         </div>
         <div>
           <img
-            src={require("../assets/verif1.jpg")}
+            src={require("../assets/unverified.jpg")}
             alt="Verification Pending"
             className="absolute right-10 bottom-2 h-[90%] z-0"
           />
         </div>
       </div>
+      <div className="absolute text-white top-10 hover:text-black border-transparent hover:border-black hover:bg-light-theme border-2 transition duration-200 right-28 w-28 h-28 rounded-full bg-dark-theme flex justify-center items-center" onClick={() => {localStorage.removeItem('AuthCookie'); navigate("/")}}><FontAwesomeIcon icon={faRightFromBracket} className="text-5xl" /></div>
     </div>
   );
 }
-
-
