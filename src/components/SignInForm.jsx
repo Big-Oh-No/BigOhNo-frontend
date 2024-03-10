@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { json, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { faEyeSlash } from "@fortawesome/free-solid-svg-icons";
@@ -11,25 +11,44 @@ export default function SignInForm() {
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-
-  const submitForm = (email, password) => {
-    warn(email,password);
-    console.log(email);
-    console.log(password);
+  const submitForm = async () => {
+    if (isValid()) {
+      try{
+        const response = await fetch(`${process.env.REACT_APP_BACKEND}/user/login`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: email,
+            password: password,
+          })
+        });
+  
+        if (response.status === 200) {
+          localStorage.setItem("AuthCookie", JSON.stringify({email:email,password:password}))
+          navigate("/dashboard");
+        } else {
+          const detail = await response.json();
+          setErrorMessage(detail["detail"]);
+        }
+      }catch(error){
+        setErrorMessage("Unexpected error occurred")
+      }
+     
+    }
   };
 
-  const warn = (email, password) => {
+  const isValid = () => {
     if (!email) {
       setErrorMessage("Please enter a valid email!");
-      // console.log("Email Missing!")
-      return;
+      return false;
     } else if (!password) {
       setErrorMessage("Please enter a valid password!");
-      // console.log("Password Missing!")
-      return;
+      return false;
     }
-    navigate("/Dashboard");
-  }
+    return true;
+  };
 
   return (
     <div className="w-full h-full flex flex-col justify-center ">
@@ -83,14 +102,16 @@ export default function SignInForm() {
         <div
           className="flex justify-center items-center text-white bg-dark-theme text-2xl w-[25%] py-3 rounded-full border-[0.075rem] border-transparent hover:bg-light-theme hover:border-[0.075rem] hover:border-black font-semibold hover:cursor-pointer hover:text-dark-theme transition duration-500"
           onClick={() => {
-            submitForm(email, password);
+            submitForm();
           }}
         >
           Sign In
         </div>
       </div>
       {errorMessage && (
-        <div className="flex justify-center items-center mt-4 text-red-500">{errorMessage}</div>
+        <div className="flex justify-center items-center mt-4 text-red-500">
+          {errorMessage}
+        </div>
       )}
     </div>
   );
