@@ -50,7 +50,7 @@ const init = async() => {
     <div className="">
       <div className="font-semibold font-inter h-screen w-screen flex flex-row pl-16 pt-16">
         <div className="flex flex-col z-10">
-          <div className="text-dark-theme text-6xl">
+          <div className="text-dark-theme text-6xl" onClick={() => {localStorage.removeItem('AuthCookie'); navigate("/")}}>
             Verification Pending ...{" "}
           </div>
 

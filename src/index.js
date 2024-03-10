@@ -26,7 +26,7 @@ const router = createBrowserRouter([
   },
   {
 
-    path: "/on_hold",
+    path: "/hold",
     element: <OnHold />
     
   },
