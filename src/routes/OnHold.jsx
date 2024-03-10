@@ -1,5 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 
 export default function OnHold() {
   const navigate = useNavigate();
@@ -50,7 +52,7 @@ const init = async() => {
     <div className="">
       <div className="font-semibold font-inter h-screen w-screen flex flex-row pl-16 pt-16">
         <div className="flex flex-col z-10">
-          <div className="text-dark-theme text-6xl" onClick={() => {localStorage.removeItem('AuthCookie'); navigate("/")}}>
+          <div className="text-dark-theme text-6xl">
             Verification Pending ...{" "}
           </div>
 
@@ -73,6 +75,7 @@ const init = async() => {
           />
         </div>
       </div>
+      <div className="absolute text-white top-10 hover:text-black border-transparent hover:border-black hover:bg-light-theme border-2 transition duration-200 right-28 w-28 h-28 rounded-full bg-dark-theme flex justify-center items-center" onClick={() => {localStorage.removeItem('AuthCookie'); navigate("/")}}><FontAwesomeIcon icon={faRightFromBracket} className="text-5xl" /></div>
     </div>
   );
 }
