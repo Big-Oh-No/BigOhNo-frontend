@@ -10,7 +10,7 @@ export default function Dashboard() {
       }, []);
 
       const init = async() => {
-        const data = localStorage.getItem('AuthCookie');
+        const data = JSON.parse(localStorage.getItem('AuthCookie'));
           if(data === null){
             navigate("/");
             return;

@@ -7,7 +7,7 @@ export default function OnHold() {
     init();
   },[])
 const init = async() => {
-  const data = localStorage.getItem('AuthCookie');
+  const data = JSON.parse(localStorage.getItem('AuthCookie'));
     if(data === null){
       navigate("/");
       return;
@@ -67,7 +67,7 @@ const init = async() => {
         </div>
         <div>
           <img
-            src={require("../assets/verif1.jpg")}
+            src={require("../assets/unverified.jpg")}
             alt="Verification Pending"
             className="absolute right-10 bottom-2 h-[90%] z-0"
           />
