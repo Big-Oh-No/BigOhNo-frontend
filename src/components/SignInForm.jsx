@@ -109,7 +109,7 @@ export default function SignInForm() {
         </div>
       </div>
       {errorMessage && (
-        <div className="flex justify-center items-center mt-4 text-red-500">
+        <div className="absolute right-[32%] bottom-44 mt-4 text-red-500">
           {errorMessage}
         </div>
       )}
