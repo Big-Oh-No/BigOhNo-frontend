@@ -11,36 +11,39 @@ export default function SignUpForm() {
   const [errMessage, setErrMessage] = useState("");
   const navigate = useNavigate();
 
-
   const formSubmit = async () => {
     if (isValid()) {
-      try{
-        const response = await fetch(`${process.env.REACT_APP_BACKEND}/user/signup`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(
-            {
-              "first_name": firstName,
-              "last_name": lastName,
-              "email": email,
-              "password": password,
-              "role": buttonValue
-            }
-          )
-        });
-      if(response.status === 201){
-        localStorage.setItem("AuthCookie", JSON.stringify({email: email,password: password}))
-        navigate("/dashboard")
-      }else{
-        const detail = await response.json();
-        setErrMessage(detail["detail"])
-      }
-      }catch(error){
+      try {
+        const response = await fetch(
+          `${process.env.REACT_APP_BACKEND}/user/signup`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              first_name: firstName,
+              last_name: lastName,
+              email: email,
+              password: password,
+              role: buttonValue,
+            }),
+          }
+        );
+        if (response.status === 201) {
+          localStorage.setItem(
+            "AuthCookie",
+            JSON.stringify({ email: email, password: password })
+          );
+          navigate("/dashboard");
+        } else {
+          const detail = await response.json();
+          setErrMessage(detail["detail"]);
+        }
+      } catch (error) {
         setErrMessage("Unexpected error occurred");
       }
-    } 
+    }
   };
   const isValid = () => {
     if (password !== confirmPassword) {
@@ -59,7 +62,7 @@ export default function SignUpForm() {
     } else if (!confirmPassword) {
       setErrMessage("Please confirm your password");
       return false;
-    }else if (buttonValue === "none"){
+    } else if (buttonValue === "none") {
       setErrMessage("Please choose a role!");
       return false;
     }
