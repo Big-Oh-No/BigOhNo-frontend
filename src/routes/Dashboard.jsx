@@ -1,13 +1,17 @@
 import DasboardLayout from "../components/Admin/AdminDash";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import AdminDash from "../components/Admin/AdminDash";
+import TeacherDash from "../components/Teacher/TeacherDash";
+import StudentDash from "../components/Student/StudentDash";
+import NotFound from "./NotFound"
 
 export default function Dashboard() {
   const navigate = useNavigate();
-  const role = "admin";
+  const [role, setRole] = useState("");
+
   useEffect(() => {
     init();
   }, []);
@@ -37,6 +41,10 @@ export default function Dashboard() {
       );
 
       if (response.status === 200) {
+        const response_json = await response.json();
+        setRole(response_json["role"]);
+        // localStorage.setItem("RoleCookie", response_json["role"]);
+        // Can use it if required in future
         return;
       } else if (response.status === 409) {
         localStorage.removeItem("AuthCookie");
@@ -56,8 +64,9 @@ export default function Dashboard() {
       return;
     }
   };
+
   return (
-    <div className="">
+    <div className="w-screen h-screen">
       <div
         className="absolute text-white top-10 hover:text-black border-transparent hover:border-black hover:bg-light-theme border-2 transition duration-200 right-28 w-28 h-28 rounded-full bg-dark-theme flex justify-center items-center"
         onClick={() => {
@@ -67,8 +76,16 @@ export default function Dashboard() {
       >
         <FontAwesomeIcon icon={faRightFromBracket} className="text-5xl" />
       </div>
-      <div className="">
-        {role === "admin" ? <AdminDash /> : <></>}
+      <div className="w-full h-full">
+        {
+          role === "admin" ? (
+            <AdminDash />
+          ) : role === "teacher" ? (
+            <TeacherDash />
+          ) : role === "student" ? (
+            <StudentDash />
+          ) : <NotFound />
+        }
       </div>
     </div>
   );
