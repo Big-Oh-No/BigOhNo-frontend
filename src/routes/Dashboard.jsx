@@ -7,7 +7,7 @@ import AdminDash from "../components/Admin/AdminDash";
 
 export default function Dashboard() {
   const navigate = useNavigate();
-
+  const role = "admin";
   useEffect(() => {
     init();
   }, []);
@@ -68,8 +68,7 @@ export default function Dashboard() {
         <FontAwesomeIcon icon={faRightFromBracket} className="text-5xl" />
       </div>
       <div className="">
-        {/* need to check role. for now, role possible is just admin. Context API. */}
-        <AdminDash />
+        {role === "admin" ? <AdminDash /> : <></>}
       </div>
     </div>
   );
