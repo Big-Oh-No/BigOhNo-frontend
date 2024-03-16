@@ -1,5 +1,3 @@
-// import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
-// import { }
 import React from "react";
 
 export default function AdminNavBar() {
