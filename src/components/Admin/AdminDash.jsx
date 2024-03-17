@@ -7,22 +7,30 @@ import {
   faGraduationCap,
   faShieldHalved,
   faPlus,
+  faRightFromBracket
 } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import AdminVerify from "./AdminVerify";
 import AdminEnroll from "./AdminEnroll";
 import AdminProfile from "./AdminProfile";
 import Loading from "../common/Loading";
+import { useNavigate } from "react-router-dom";
 
 export default function AdminDash() {
+  const navigate = useNavigate();
   const [selectedOption, setSelectedOption] = useState("home");
   const OPTIONS = [
+    ["logout", faRightFromBracket],
     ["enroll", faGraduationCap],
     ["verify", faShieldHalved],
     ["home", faHouse],
     ["add", faPlus],
     ["profile", faUser],
   ];
+  const handleLogout = () => {
+    localStorage.removeItem("AuthCookie");
+    navigate("/");
+  };
   return (
     <div className="w-full h-full">
       {selectedOption === "home" ? (
@@ -35,6 +43,8 @@ export default function AdminDash() {
         <AdminEnroll />
       ) : selectedOption === "profile" ? (
         <AdminProfile />
+      ) : (selectedOption === "logout" && handleLogout()) ? (
+        <Loading />
       ) : (
         <Loading />
       )}
