@@ -34,7 +34,7 @@ const router = createBrowserRouter([
     path: "*",
     element: <NotFound />
 
-  }
+  },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

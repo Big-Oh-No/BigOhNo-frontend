@@ -1,4 +1,3 @@
-import DasboardLayout from "../components/Admin/AdminDash";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -6,7 +5,7 @@ import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import AdminDash from "../components/Admin/AdminDash";
 import TeacherDash from "../components/Teacher/TeacherDash";
 import StudentDash from "../components/Student/StudentDash";
-import NotFound from "./NotFound"
+import Loading from "../components/common/Loading";
 
 export default function Dashboard() {
   const navigate = useNavigate();
@@ -84,7 +83,7 @@ export default function Dashboard() {
             <TeacherDash />
           ) : role === "student" ? (
             <StudentDash />
-          ) : <NotFound />
+          ) : <Loading />
         }
       </div>
     </div>
