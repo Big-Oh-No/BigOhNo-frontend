@@ -7,7 +7,7 @@ export default function NavBar(props) {
 
   return (
     <div
-      className="flex flex-row items-center justify-around rounded-3xl w-[20%] bg-white h-full"
+      className="flex flex-row items-center justify-around rounded-3xl px-5 space-x-10 bg-white h-full"
       style={{ boxShadow: "0 0 20px rgba(0, 0, 0, 0.14)" }}
     >
       {props.options.map((current_option) => {

@@ -66,15 +66,6 @@ export default function Dashboard() {
 
   return (
     <div className="w-screen h-screen">
-      <div
-        className="absolute text-white top-10 hover:text-black border-transparent hover:border-black hover:bg-light-theme border-2 transition duration-200 right-28 w-28 h-28 rounded-full bg-dark-theme flex justify-center items-center"
-        onClick={() => {
-          localStorage.removeItem("AuthCookie");
-          navigate("/");
-        }}
-      >
-        <FontAwesomeIcon icon={faRightFromBracket} className="text-5xl" />
-      </div>
       <div className="w-full h-full">
         {
           role === "admin" ? (
