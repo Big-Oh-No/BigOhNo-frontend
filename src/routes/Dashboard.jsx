@@ -41,7 +41,6 @@ export default function Dashboard() {
 
       if (response.status === 200) {
         const response_json = await response.json();
-        console.log(response_json.user.id);
         const userProfile = new User({
           id: response_json.user.id,
           first_name: response_json.user.first_name,
