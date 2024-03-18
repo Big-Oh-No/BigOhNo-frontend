@@ -1,4 +1,4 @@
-import TeacherCourseCard from "./TeacherCourseCard";
+import StudentCourseCard from "./TeacherCourseCard";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Course from "../../models/course";
