@@ -1,4 +1,4 @@
-import StudentCourseCard from "./StudentCourseCard";
+import StudentRequestCard from "./StudentRequestCard";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CourseRequest from "../../models/course_request";
@@ -56,8 +56,6 @@ export default function StudentRequest() {
         return;
       }
     } catch (error) {
-      localStorage.removeItem("AuthCookie");
-      navigate("/");
       return;
     }
   };
@@ -69,8 +67,8 @@ export default function StudentRequest() {
         <div className="grid grid-cols-4 w-[97%] overflow-auto p-10">
           {courses.map((course) => {
             return (
-              <div className="w-full h-[26rem] flex justify-center items-center">
-                <StudentCourseCard course={course} />
+              <div className="w-full h-[37rem] flex justify-center items-center">
+                <StudentRequestCard course={course} />
               </div>
             );
           })}
