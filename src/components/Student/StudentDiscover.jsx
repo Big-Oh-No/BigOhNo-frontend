@@ -1,4 +1,4 @@
-import TeacherCourseCard from "./TeacherCourseCard";
+import StudentCourseCard from "./StudentCourseCard";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Course from "../../models/course";
@@ -76,7 +76,7 @@ export default function StudentHome() {
             {courses.map((course) => {
               return (
                 <div className="w-full h-[26rem] flex justify-center items-center">
-                  <TeacherCourseCard course={course} />
+                  <StudentCourseCard course={course} />
                 </div>
               );
             })}
