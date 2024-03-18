@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function TeacherCourseCard(props) {
+export default function StudentCourseCard(props) {
   const navigate = useNavigate();
   const [isHovered, setIsHovered] = useState(false);
   return (
