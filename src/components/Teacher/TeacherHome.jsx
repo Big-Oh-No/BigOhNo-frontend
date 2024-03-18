@@ -44,7 +44,7 @@ export default function TeacherHome() {
             total_seats: response_json[i].total_seats,
             taken_seats: response_json[i].taken_seats,
             status: response_json[i].status,
-            teacher_id: response_json[i].teacher_id,
+            teacher_name: response_json[i].teacher_name,
           });
           course_array.push(current_course);
         }
