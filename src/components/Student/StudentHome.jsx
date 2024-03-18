@@ -1,4 +1,4 @@
-import StudentCourseCard from "./TeacherCourseCard";
+import StudentCourseCard from "./StudentCourseCard";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Course from "../../models/course";
@@ -44,7 +44,7 @@ export default function StudentHome() {
             total_seats: response_json[i].total_seats,
             taken_seats: response_json[i].taken_seats,
             status: response_json[i].status,
-            teacher_id: response_json[i].teacher_id,
+            teacher_name: response_json[i].teacher_name,
           });
           course_array.push(current_course);
         }
@@ -69,7 +69,7 @@ export default function StudentHome() {
           {courses.map((course) => {
             return (
               <div className="w-full h-[26rem] flex justify-center items-center">
-                <TeacherCourseCard course={course} />
+                <StudentCourseCard course={course} />
               </div>
             );
           })}
