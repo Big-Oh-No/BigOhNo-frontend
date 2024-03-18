@@ -96,8 +96,6 @@ export default function Dashboard() {
         navigate("/");
       }
     } catch (error) {
-      localStorage.removeItem("AuthCookie");
-      navigate("/");
       return;
     }
   };

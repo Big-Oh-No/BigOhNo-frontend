@@ -41,7 +41,7 @@ export default function StudentDash(props) {
       ) : (selectedOption === "logout" && handleLogout()) ? (
         <Loading />
       ) : <Loading />}
-      <div className="absolute bottom-8 w-full h-20 flex flex-row justify-center">
+      <div className="fixed bottom-8 w-full h-20 flex flex-row justify-center">
         <NavBar options={OPTIONS} default="home" onChange={setSelectedOption}/>
       </div>
     </div>

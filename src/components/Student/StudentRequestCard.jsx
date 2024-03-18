@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function StudentCourseCard(props) {
+export default function StudentRequestCard(props) {
   const navigate = useNavigate();
   const [isHovered, setIsHovered] = useState(false);
   return (
@@ -10,9 +10,8 @@ export default function StudentCourseCard(props) {
       style={{ boxShadow: isHovered ? "0 0 50px rgba(0, 0, 0, 0.25)" : "none" }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      onClick={() => navigate(`/course/${props.course.id}`)}
     >
-      <div className="h-[60%] overflow-clip flex items-center justify-center rounded-xl">
+      <div className="h-[37%] overflow-clip flex items-center justify-center rounded-xl">
       {props.course.image_url ? (
         <img className="rounded-xl" src={props.course.image_url} alt="course_image"/>
       ) : (
@@ -28,8 +27,14 @@ export default function StudentCourseCard(props) {
           <div className="">{props.course.dept} {props.course.code}</div>
           <div className="text-lg">{props.course.year} {props.course.term}</div>
         </div>
-        <div className="text-lg px-2 font-semibold font-inter truncate text-neutral-500 flex flex-col items-center">
+        <div className={`justify-center text-lg px-2 h-10 font-semibold font-inter truncate ${props.course.status === "declined" ? "bg-red-500" : "bg-dark-theme"} rounded-xl text-white flex flex-col items-center`}>
+            {props.course.status}
         </div>
+      </div>
+      <div className="p-2 first-letter:flex flex-col text-neutral-500 mt-5">
+        <div className="text-xl">Comments</div>
+        <div>{props.course.comment ? props.course.comment : "No comments found."}</div>
+        
       </div>
     </div>
   );

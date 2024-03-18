@@ -1,7 +1,7 @@
-import StudentCourseCard from "./StudentCourseCard";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Course from "../../models/course";
+import CourseCard from "../common/CourseCard";
 
 export default function StudentHome() {
   const [courses, setCourses] = useState([]);
@@ -55,8 +55,6 @@ export default function StudentHome() {
         return;
       }
     } catch (error) {
-      localStorage.removeItem("AuthCookie");
-      navigate("/");
       return;
     }
   };
@@ -71,18 +69,19 @@ export default function StudentHome() {
         </div>
       )}
       {courses && courses.length !== 0 && (
-        <div className="flex w-full justify-center mt-[2.77rem]">
-          <div className="grid grid-cols-4 w-[97%] overflow-auto p-10">
+        <div className="flex w-full justify-center mt-[7rem]">
+          <div className="flex flex-col w-full px-32">
             {courses.map((course) => {
               return (
-                <div className="w-full h-[26rem] flex justify-center items-center">
-                  <StudentCourseCard course={course} />
+                <div className="w-full h-[19rem] flex justify-center items-center">
+                  <CourseCard course={course} />
                 </div>
               );
             })}
           </div>
         </div>
       )}
+      <div className="h-[13%]"></div>
     </div>
   );
 }

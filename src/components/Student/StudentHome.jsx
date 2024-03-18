@@ -55,8 +55,6 @@ export default function StudentHome() {
         return;
       }
     } catch (error) {
-      localStorage.removeItem("AuthCookie");
-      navigate("/");
       return;
     }
   };
