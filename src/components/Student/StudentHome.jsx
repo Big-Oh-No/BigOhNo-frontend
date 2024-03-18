@@ -12,7 +12,7 @@ export default function StudentHome() {
 
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_BACKEND}/course/teacher`,
+        `${process.env.REACT_APP_BACKEND}/course/student`,
         {
           method: "POST",
           headers: {
@@ -63,7 +63,7 @@ export default function StudentHome() {
   return (
     <div className="pt-10 w-screen h-screen">
       <div className="absolute text-5xl font-bold font-inter top-14 left-10">Your Courses</div>
-      {courses && courses.length === 0 && <div className="w-full h-full flex justify-center items-center text-2xl">You are not instructing any courses</div>}
+      {courses && courses.length === 0 && <div className="w-full h-full flex justify-center items-center text-2xl">You are not enrolled in any courses</div>}
       {courses && courses.length !== 0 && <div className="flex w-full justify-center mt-[2.77rem]">
         <div className="grid grid-cols-4 w-[97%] overflow-auto p-10">
           {courses.map((course) => {

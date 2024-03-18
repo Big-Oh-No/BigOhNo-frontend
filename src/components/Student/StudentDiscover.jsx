@@ -12,7 +12,7 @@ export default function StudentHome() {
 
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_BACKEND}/course/teacher`,
+        `${process.env.REACT_APP_BACKEND}/course/`,
         {
           method: "POST",
           headers: {
@@ -67,7 +67,7 @@ export default function StudentHome() {
       </div>
       {courses && courses.length === 0 && (
         <div className="w-full h-full flex justify-center items-center text-2xl">
-          You are not instructing any courses
+          No available active courses
         </div>
       )}
       {courses && courses.length !== 0 && (
