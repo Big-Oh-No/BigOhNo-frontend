@@ -29,11 +29,11 @@ export default function AdminAdd() {
   };
 
   return (
-    <div className="flex flex-col w-full h-full px-20 pt-20 ">
-      <div className="w-[45%]">
-        <h2 className="text-5xl font-semibold mb-4 font-inter ">Course Form</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="mt-8 space-y-2">
+    <div className="flex flex-col w-screen h-screen px-14 pt-10 font-inter">
+      <h2 className="text-5xl font-semibold">Course Form</h2>
+      <form onSubmit={handleSubmit}>
+        <div className="flex flex-row justify-between w-[80%] mt-4">
+          <div className="w-[40%]">
             <label className="block font-semibold text-xl">Department</label>
             <input
               className="px-5 w-full focus:outline-none bg-light-theme border-[0.075rem] border-black h-14 text-lg rounded-xl"
@@ -45,9 +45,8 @@ export default function AdminAdd() {
               required
             />
           </div>
-
-          <div className="mb-4">
-            <label className="block text-gray-700 font-bold mb-2">
+          <div className=" w-[40%]">
+            <label className="block font-semibold text-xl">
               Course Code
             </label>
             <input
@@ -60,42 +59,41 @@ export default function AdminAdd() {
               required
             />
           </div>
+        </div>
 
-          <div className="mb-4">
-            <label className="block text-gray-700 font-bold mb-2">
-              Course Name
-            </label>
+        <div className="w-[80%]">
+          <label className="block font-semibold text-xl">
+            Course Name
+          </label>
+          <input
+            className="px-5 w-full focus:outline-none bg-light-theme border-[0.075rem] border-black h-14 text-lg rounded-xl"
+            type="text"
+            id="name"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <div className="w-[80%]">
+          <label className="block font-semibold text-xl">
+            Description
+          </label>
+          <textarea
+            className=" pt-3 px-5 w-full focus:outline-none bg-light-theme border-[0.075rem] border-black h-14 text-lg rounded-xl"
+            id="desc"
+            name="desc"
+            value={formData.desc}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="flex flex-row justify-between w-[80%]">
+          <div className="w-[40%]">
+            <label className="block font-semibold text-xl">Syllabus</label>
             <input
-              className="px-5 w-full focus:outline-none bg-light-theme border-[0.075rem] border-black h-14 text-lg rounded-xl"
-              type="text"
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-            />
-          </div>
-
-          <div className="mb-4">
-            <label className="block text-gray-700 font-bold mb-2">
-              Description
-            </label>
-            <textarea
-              className="px-5 w-full focus:outline-none bg-light-theme border-[0.075rem] border-black h-14 text-lg rounded-xl"
-              id="desc"
-              name="desc"
-              value={formData.desc}
-              onChange={handleChange}
-              required
-            />
-          </div>
-
-          <div className="mb-4">
-            <label className="block text-gray-700 font-bold mb-2">
-              Syllabus
-            </label>
-            <input
-              className="border border-gray-400 rounded px-3 py-2 w-full"
+              className="pt-3 px-5 w-full focus:outline-none bg-light-theme border-[0.075rem] border-black h-14 text-lg rounded-xl"
               type="file"
               id="syllabus"
               name="syllabus"
@@ -104,15 +102,12 @@ export default function AdminAdd() {
             />
           </div>
 
-          <div className="mb-4">
-            <label
-              className="block text-gray-700 font-bold mb-2"
-              htmlFor="courseImg"
-            >
+          <div className="w-[40%]">
+            <label className="block font-semibold text-xl">
               Course Image
             </label>
             <input
-              className="border border-gray-400 rounded px-3 py-2 w-full"
+              className="pt-3 px-5 w-full focus:outline-none bg-light-theme border-[0.075rem] border-black h-14 text-lg rounded-xl"
               type="file"
               id="courseImg"
               name="courseImg"
@@ -120,11 +115,12 @@ export default function AdminAdd() {
               required
             />
           </div>
-
-          <div className="mb-4">
-            <label className="block text-gray-700 font-bold mb-2">Term</label>
+        </div>
+        <div className="flex flex-row justify-between w-[80%]">
+          <div className=" w-[40%]">
+            <label className="block font-semibold text-xl">Term</label>
             <select
-              className="border border-gray-400 rounded px-3 py-2 w-full"
+              className="pt-3 px-5 w-full focus:outline-none bg-light-theme border-[0.075rem] border-black h-14 text-lg rounded-xl"
               id="term"
               name="term"
               value={formData.term}
@@ -139,10 +135,10 @@ export default function AdminAdd() {
             </select>
           </div>
 
-          <div className="mb-4">
-            <label className="block text-gray-700 font-bold mb-2">Year</label>
+          <div className="mt-4 w-[40%]">
+            <label className="block font-semibold mb-2 text-xl">Year</label>
             <input
-              className="border border-gray-400 rounded px-3 py-2 w-full"
+              className=" px-5 w-full focus:outline-none bg-light-theme border-[0.075rem] border-black h-14 text-lg rounded-xl"
               type="number"
               id="year"
               name="year"
@@ -151,31 +147,32 @@ export default function AdminAdd() {
               required
             />
           </div>
-
-          <div className="mb-4">
+        </div>
+        <div className="flex flex-row justify-between w-[80%]">
+            <div className="mt-4 w-[40%]">
             <label
-              className="block text-gray-700 font-bold mb-2"
-              htmlFor="credits"
-            >
-              Credits
-            </label>
-            <input
-              className="border border-gray-400 rounded px-3 py-2 w-full"
+            className="block font-semibold mb-2 text-xl" 
+          >
+            Credits
+          </label>
+          <input
+              className="px-5 w-full focus:outline-none bg-light-theme border-[0.075rem] border-black h-14 text-lg rounded-xl"
               type="number"
-              id="credits"
-              name="credits"
-              value={formData.credits}
-              onChange={handleChange}
-              required
-            />
-          </div>
+            id="credits"
+            name="credits"
+            value={formData.credits}
+            onChange={handleChange}
+            required
+          />
+            </div>
+         
 
-          <div className="mb-4">
-            <label className="block text-gray-700 font-bold mb-2">
+          <div className="mt-4 w-[40%]">
+            <label className="block  font-semibold mb-2 text-xl">
               Total Seats
             </label>
             <input
-              className="border border-gray-400 rounded px-3 py-2 w-full"
+              className="px-5 w-full focus:outline-none bg-light-theme border-[0.075rem] border-black h-14 text-lg rounded-xl"
               type="number"
               id="totalSeats"
               name="totalSeats"
@@ -184,34 +181,34 @@ export default function AdminAdd() {
               required
             />
           </div>
+        </div>
 
-          <div className="mb-4">
-            <label
-              className="block text-gray-700 font-bold mb-2"
-              htmlFor="teacherEmail"
-            >
-              Teacher Email
-            </label>
-            <input
-              className="border border-gray-400 rounded px-3 py-2 w-full"
+        <div className="mt-4 w-[80%]">
+          <label
+            className="block font-semibold mb-2 text-xl"
+          >
+            Teacher Email
+          </label>
+          <input
+              className="px-5 w-full focus:outline-none bg-light-theme border-[0.075rem] border-black h-14 text-lg rounded-xl"
               type="email"
-              id="teacherEmail"
-              name="teacherEmail"
-              value={formData.teacherEmail}
-              onChange={handleChange}
-              required
-            />
+            id="teacherEmail"
+            name="teacherEmail"
+            value={formData.teacherEmail}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <div className="flex justify-center items-center pb-12 pr-56">
+          <div className="flex items-center justify-center w-[25%] mt-10 rounded-full border-black font-inter text-2xl bg-dark-theme font-semibold hover:cursor-pointer py-3 hover:bg-light-theme border border-transparent hover:border-black text-white hover:text-black transition duration-500 hover:scale-125 select-none">
+            <button type="submit" className="">
+              Submit
+            </button>
           </div>
-          <div className="flex justify-center">
-            <div className="flex items-center justify-center w-[25%] mt-16 rounded-full border-black font-inter text-2xl bg-dark-theme font-semibold hover:cursor-pointer py-3 hover:bg-light-theme border border-transparent hover:border-black text-white hover:text-black transition duration-500 hover:scale-125 select-none">
-              <button type="submit" className="">
-                Submit
-              </button>
-            </div>
-          </div>
-        </form>
-        <div className="h-[13%]"></div>
-      </div>
+        </div>
+      </form>
+      <div className="h-[13%]"></div>
     </div>
   );
 }
