@@ -9,8 +9,10 @@ module.exports = defineConfig({
   },
 
   e2e: {
-    setupNodeEvents(on, config) {
-      // implement node event listeners here
-    },
+    // setupNodeEvents(on, config) {
+    //   // implement node event listeners here
+    // },
+    //chromeWebSecurity: false, // Add the chromeWebSecurity option here
+    baseUrl: 'http://localhost:3000',
   },
 });
