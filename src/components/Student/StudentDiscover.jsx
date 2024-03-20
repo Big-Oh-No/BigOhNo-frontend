@@ -7,10 +7,6 @@ export default function StudentHome() {
   const [courses, setCourses] = useState([]);
   const navigate = useNavigate();
 
-  const enrollHandler = async () => {
-
-  }
-
   useEffect(() => init, []);
   const init = async () => {
     const data = JSON.parse(localStorage.getItem("AuthCookie"));
