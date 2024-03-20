@@ -8,6 +8,7 @@ export default function AdminVerify() {
   const navigate = useNavigate();
   const handleApprove = async (user_email, name) => {
     try {
+      const data = JSON.parse(localStorage.getItem("AuthCookie"));
       const response = await fetch(
         `${process.env.REACT_APP_BACKEND}/user/verify`,
         {
@@ -16,8 +17,8 @@ export default function AdminVerify() {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            email: localStorage.getItem("AuthCookie")["email"],
-            password: localStorage.getItem("AuthCookie")["password"],
+            email: data["email"],
+            password: data["password"],
             user_email: user_email,
           }),
         }
