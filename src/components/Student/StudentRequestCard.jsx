@@ -33,7 +33,7 @@ export default function StudentRequestCard(props) {
       </div>
       <div className="p-2 first-letter:flex flex-col text-neutral-500 mt-5">
         <div className="text-xl">Comments</div>
-        <div>{props.course.comment ? props.course.comment : "No comments found."}</div>
+        <div>{(props.course.comment && props.course.comment.length !== 0) ? props.course.comment : "No comments found."}</div>
         
       </div>
     </div>
