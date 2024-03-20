@@ -10,7 +10,7 @@ import TeacherHome from "./TeacherHome";
 import TeacherProfile from "./TeacherProfile";
 import { useNavigate } from "react-router-dom";
 
-export default function TeacherDash() {
+export default function TeacherDash(props) {
   const navigate = useNavigate();
   const [selectedOption, setSelectedOption] = useState("home");
   const OPTIONS = [
@@ -27,11 +27,11 @@ export default function TeacherDash() {
       {selectedOption === "home" ? (
         <TeacherHome />
       ) : selectedOption === "profile" ? (
-        <TeacherProfile />
+        <TeacherProfile user={props.profile}/>
       ) : (selectedOption === "logout" && handleLogout()) ? (
         <Loading />
       ) : <Loading />}
-      <div className="absolute bottom-8 w-full h-20 flex flex-row justify-center">
+      <div className="bottom-8 w-full h-20 flex flex-row justify-center fixed">
         <NavBar options={OPTIONS} default="home" onChange={setSelectedOption}/>
       </div>
     </div>

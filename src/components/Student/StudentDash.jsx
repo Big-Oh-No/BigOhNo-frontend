@@ -14,7 +14,7 @@ import StudentProfile from "./StudentProfile";
 import StudentDiscover from "./StudentDiscover";
 import StudentRequest from "./StudentRequest";
 
-export default function StudentDash() {
+export default function StudentDash(props) {
   const navigate = useNavigate();
   const [selectedOption, setSelectedOption] = useState("home");
   const OPTIONS = [
@@ -33,7 +33,7 @@ export default function StudentDash() {
       {selectedOption === "home" ? (
         <StudentHome />
       ) : selectedOption === "profile" ? (
-        <StudentProfile />
+        <StudentProfile user = {props.profile}/>
       ) : selectedOption === "discover" ? (
         <StudentDiscover />
       ) : selectedOption === "request" ? (
@@ -41,7 +41,7 @@ export default function StudentDash() {
       ) : (selectedOption === "logout" && handleLogout()) ? (
         <Loading />
       ) : <Loading />}
-      <div className="absolute bottom-8 w-full h-20 flex flex-row justify-center">
+      <div className="fixed bottom-8 w-full h-20 flex flex-row justify-center">
         <NavBar options={OPTIONS} default="home" onChange={setSelectedOption}/>
       </div>
     </div>

@@ -10,6 +10,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import NotFound from './routes/NotFound';
+import Course from './routes/Course';
 
 const router = createBrowserRouter([
   {
@@ -25,7 +26,10 @@ const router = createBrowserRouter([
     element: <Dashboard />
   },
   {
-
+    path: "/course/:id",
+    element: <Course />
+  },
+  {
     path: "/hold",
     element: <OnHold />
     
