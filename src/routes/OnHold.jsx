@@ -17,7 +17,7 @@ const init = async() => {
       const password = data["password"];
 
       try {
-        const response = await fetch(`${process.env.REACT_APP_BACKEND}/user/check`, {
+        const response = await fetch(`${process.env.REACT_APP_BACKEND}/user/get_user`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
