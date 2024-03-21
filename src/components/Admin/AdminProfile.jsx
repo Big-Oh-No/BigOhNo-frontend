@@ -21,7 +21,7 @@ export default function AdminProfile(props) {
   // state management
   const [contact, setContact] = useState(user.contact);
   const [office, setOffice] = useState(user.office);
-  const [userBio, setUserBio] = useState(user.bio);
+  const [userBio, setUserBio] = useState(bio);
   const [userPronouns, setUserPronouns] = useState(pronouns);
   const [userGender, setUserGender] = useState(gender);
   const [userProfileImage, setProfileImage] = useState(profile_image);
