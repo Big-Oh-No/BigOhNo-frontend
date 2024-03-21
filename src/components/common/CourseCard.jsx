@@ -57,7 +57,7 @@ export default function CourseCard(props) {
         </div>
         <div className="text-lg font-inter overflow-y-auto h-28 max-h-28 mt-5">{props.course.description}</div>
         <div className="flex flex-row justify-between items-end h-full">
-            <div className="font-semibold text-dark-theme text-xl pb-2 pl-2">{props.course.teacher_name} <div className="text-neutral-400">Seats Available: {props.course.total_seats - props.course.taken_seats}/{props.course.total_seats}</div></div>
+            <div className="font-semibold text-dark-theme text-xl pb-2 pl-2">{props.course.teacher_name} <div className="text-neutral-400">Currently Enrolled: {props.course.taken_seats}/{props.course.total_seats}</div></div>
             <div className="flex justify-center items-center text-white bg-dark-theme px-5 py-2 z-10 rounded-xl text-xl hover:text-black hover:bg-light-theme border hover:cursor-pointer hover:scale-105 hover:shadow-lg hover:border-black border-transparent transition duration-200" onClick={() => enrollHandler(props.course.id)}>Enroll</div>
         </div>
       </div>
