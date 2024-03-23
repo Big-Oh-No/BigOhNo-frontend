@@ -16,22 +16,75 @@ export default function AdminAdd() {
   });
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
+    const { name, value, files } = e.target;
+    
+    // If the input is a file input and has files
+    if (files && files.length) {
+      const file = files[0]; // Assume single file upload for simplicity
+      const reader = new FileReader();
+  
+      // Read the file as bytes
+      reader.readAsArrayBuffer(file);
+  
+      // Once the file is loaded, set it in the state
+      reader.onload = () => {
+        setFormData((prevData) => ({
+          ...prevData,
+          [name]: reader.result, // Set the file content as bytes
+        }));
+      };
+    } else {
+      // If not a file input or no files selected, set the value normally
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    }
+  };  
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission logic here
+    const data = JSON.parse(localStorage.getItem("AuthCookie"));
+    console.log(formData.term)
+    try {
+      const formData = new FormData();
+      formData.append("email", data["email"]);
+      formData.append("password", data["password"]);
+      formData.append("dept", `'${formData.dpt}'`);
+      formData.append("code", formData.code);
+      formData.append("course_name", formData.name);
+      formData.append("description", formData.desc);
+      formData.append("term", formData.term);
+      formData.append("year", formData.year);
+      formData.append("credits", formData.credits);
+      formData.append("total_seats", formData.totalSeats);
+      formData.append("teacher_email", formData.teacherEmail);
+      
+      formData.append('syllabus_file', formData.syllabus);
+      formData.append('course_img', formData.courseImg);
+  
+      const response = await fetch(`${process.env.REACT_APP_BACKEND}/course/create`, {
+        method: "POST",
+        body: formData
+      });
+    
+      if (response.status === 201) {
+        alert("Success");
+      } else {
+        const res = await response.json();
+        console.log(res);
+        alert("Failed");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }    
   };
+  
 
   return (
     <div className="flex flex-col w-screen h-screen px-14 pt-10 font-inter">
       <h2 className="text-5xl font-semibold">Course Form</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="flex justify-center items-center flex-col mt-10 space-y-2">
         <div className="flex flex-row justify-between w-[80%] mt-4">
           <div className="w-[40%]">
             <label className="block font-semibold text-xl">Department</label>
@@ -200,8 +253,8 @@ export default function AdminAdd() {
           />
         </div>
 
-        <div className="flex justify-center items-center pb-12 pr-56">
-          <div className="flex items-center justify-center w-[25%] mt-10 rounded-full border-black font-inter text-2xl bg-dark-theme font-semibold hover:cursor-pointer py-3 hover:bg-light-theme border border-transparent hover:border-black text-white hover:text-black transition duration-500 hover:scale-125 select-none">
+        <div className="flex justify-center items-center w-[50%] mt-5">
+          <div className="flex items-center justify-center w-[25%] rounded-full border-black font-inter text-2xl bg-dark-theme font-semibold hover:cursor-pointer py-3 hover:bg-light-theme border border-transparent hover:border-black text-white hover:text-black transition duration-500 hover:scale-105 select-none">
             <button type="submit" className="">
               Submit
             </button>

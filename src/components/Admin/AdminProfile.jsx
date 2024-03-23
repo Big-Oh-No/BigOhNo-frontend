@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencil } from "@fortawesome/free-solid-svg-icons";
 
 export default function AdminProfile(props) {
-  
   // destructure
   const { user } = props;
   const {
@@ -46,8 +45,8 @@ export default function AdminProfile(props) {
             <div className="mt-10">
               <img
                 src={
-                  userProfileImage
-                    ? userProfileImage
+                  profile_image
+                    ? profile_image
                     : require("../../assets/pfp.png")
                 }
                 alt="Profile"
@@ -83,7 +82,7 @@ export default function AdminProfile(props) {
                   onChange={(e) => setContact(e.target.value)}
                 />
               ) : (
-                contact
+                user.contact
               )}
             </div>
             <div>
@@ -95,7 +94,7 @@ export default function AdminProfile(props) {
                   onChange={(e) => setOffice(e.target.value)}
                 />
               ) : (
-                office
+                user.office
               )}
             </div>
             <div>
@@ -107,7 +106,7 @@ export default function AdminProfile(props) {
                   onChange={(e) => setUserPronouns(e.target.value)}
                 />
               ) : (
-                pronouns
+                user.user.pronouns
               )}
             </div>
             <div>
@@ -119,7 +118,7 @@ export default function AdminProfile(props) {
                   onChange={(e) => setUserGender(e.target.value)}
                 />
               ) : (
-                gender
+                user.user.gender
               )}
             </div>
             <div>
@@ -130,7 +129,7 @@ export default function AdminProfile(props) {
                   onChange={(e) => setUserBio(e.target.value)}
                 />
               ) : (
-                bio
+                user.user.bio
               )}
             </div>
             {edit ? (
@@ -168,3 +167,4 @@ export default function AdminProfile(props) {
     </div>
   );
 }
+
