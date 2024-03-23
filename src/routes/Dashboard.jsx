@@ -60,7 +60,7 @@ export default function Dashboard() {
             user: userProfile,
             admin_id: response_json.admin_id,
             contact: response_json.contact,
-            office: response_json.office
+            office: response_json.office,
           });
         } else if (userProfile.role === "teacher") {
           roleProfile = new Teacher({
