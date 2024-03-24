@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import NotFound from "./NotFound";
+import AccessDenied from "./AccessDenied";
 
 export default function Course(props) {
   const params = useParams();
   const navigate = useNavigate();
   // const [validCourseID, setValidCourseID] = useState(null);
-  const [accessDenied, setAccessDenied] = useState(false);
+  const [accessDenied, setAccessDenied] = useState(true);
 
   // useEffect(() => {
   //   const courseID = parseInt(params.id);
@@ -21,7 +21,7 @@ export default function Course(props) {
 
   return (
     <div className="w-screen h-screen">
-      {accessDenied ? <NotFound /> : <div>Course ID: {params.id}</div>}
+      {accessDenied ? <AccessDenied /> : <div>Course ID: {params.id}</div>}
     </div>
   );
 }
