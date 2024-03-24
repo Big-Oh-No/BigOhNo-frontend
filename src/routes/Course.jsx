@@ -7,7 +7,7 @@ export default function Course(props) {
   const params = useParams();
   const navigate = useNavigate();
   // const [validCourseID, setValidCourseID] = useState(null);
-  const [accessDenied, setAccessDenied] = useState(true);
+  const [accessDenied, setAccessDenied] = useState(false);
 
   // useEffect(() => {
   //   const courseID = parseInt(params.id);
