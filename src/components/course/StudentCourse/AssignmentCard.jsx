@@ -7,13 +7,13 @@ export default function AssignmentCard() {
             <div>Your Grade: </div>
         </div>
         <div className="pt-10 flex justify-around">
-            <button onClick="" className="bg-blue-500 hover:bg-blue-700 hover:scale-105 hover:delay-200 text-white text-xl font-inter font-semibold py-5 px-6 rounded-xl">
+            <button onClick="" className="bg-blue-500 hover:bg-blue-700 hover:scale-105 transition duration-500 hover:delay-200 text-white text-xl font-inter font-semibold py-5 px-6 rounded-xl">
                 Download Assignment
             </button>
-            <button onClick="" className="bg-green-700 hover:bg-green-900 hover:scale-105 hover:delay-200 text-white text-xl font-inter font-semibold py-5 px-6 rounded-xl">
+            <button onClick="" className="bg-green-700 hover:bg-green-900 hover:scale-105 transition duration-500 hover:delay-200 text-white text-xl font-inter font-semibold py-5 px-6 rounded-xl">
                 Submit Assignment
             </button>
-            <button onClick="" className="bg-gray-500 hover:bg-gray-700 hover:scale-105 hover:delay-200 text-white text-xl font-inter font-semibold py-5 px-6 rounded-xl">
+            <button onClick="" className="bg-gray-500 hover:bg-gray-700 hover:scale-105 transition duration-500 hover:delay-200 text-white text-xl font-inter font-semibold py-5 px-6 rounded-xl">
                 View Latest Submission
             </button>
         </div>
