@@ -1,34 +1,182 @@
-import React from 'react';
+import React from "react";
+import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPencil } from "@fortawesome/free-solid-svg-icons";
 
-function TeacherProfile(props) {
-    const { user } = props;
-    const { first_name, last_name, email, role, bio, gender, pronouns, profile_image } = user.user;
-    const { faculty, office, contact } = user;
+export default function AdminProfile(props) {
+  // destructure
+  const { user } = props;
+  const {
+    first_name,
+    last_name,
+    email,
+    role,
+    bio,
+    gender,
+    pronouns,
+    profile_image,
+  } = user.user;
 
-    return (
-        <div className="flex items-center justify-center w-screen h-screen">
-            <div className="bg-light-theme rounded-xl shadow-md flex flex-row space-x-10 p-8 w-3/4">
-                <div className="flex-shrink-0 mr-8">
-                    <img
-                        src={profile_image ? profile_image : require("../../assets/pfp.png")}
-                        alt="Profile"
-                        className="rounded-full h-40 w-40"
-                    />
+  // state management
+  const [faculty, setFaculty] = useState(user.faculty);
+  const [contact, setContact] = useState(user.contact);
+  const [office, setOffice] = useState(user.office);
+  const [userBio, setUserBio] = useState(bio);
+  const [userPronouns, setUserPronouns] = useState(pronouns);
+  const [userGender, setUserGender] = useState(gender);
+  const [userProfileImage, setProfileImage] = useState(profile_image);
+  const [edit, setEdit] = useState(false);
+
+  const handleEditClick = () => {
+    setEdit(true);
+  };
+
+  const handleSave = () => {
+    setEdit(false);
+  };
+
+  return (
+    <div className="w-screen h-screen">
+      <div className="absolute font-inter font-bold text-5xl pl-12 pt-10">
+        Profile
+      </div>
+      <div className="flex items-center justify-center w-screen h-screen">
+        <div className="bg-light-theme rounded-2xl shadow-lg h-[75%] w-[30%]">
+          <div className="flex flex-col justify-center items-center">
+            <div className="mt-10">
+              <img
+                src={
+                  profile_image
+                    ? profile_image
+                    : require("../../assets/pfp.png")
+                }
+                alt="Profile"
+                className="rounded-full h-40 w-40"
+              />
+              {edit && (
+                <div className="mt-4">
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) =>
+                      setProfileImage(URL.createObjectURL(e.target.files[0]))
+                    }
+                  />
                 </div>
-                <div>
-                    <h1 className="text-3xl font-bold mb-2">{first_name} {last_name}</h1>
-                    <p className="text-lg text-gray-700 mb-4">{role}</p>
-                    <p className="text-gray-700 mb-4">{email}</p>
-                    <p className="text-gray-700 mb-4"><span className="font-bold">Faculty:</span> {faculty}</p>
-                    <p className="text-gray-700 mb-4"><span className="font-bold">Office:</span> {office}</p>
-                    <p className="text-gray-700 mb-4"><span className="font-bold">Contact:</span> {contact}</p>
-                    <p className="text-gray-700 mb-4"><span className="font-bold">Pronouns:</span> {pronouns}</p>
-                    <p className="text-gray-700 mb-4"><span className="font-bold">Gender:</span> {gender}</p>
-                    <p className="text-gray-700">{bio}</p>
-                </div>
+              )}
             </div>
+            <div className="flex flex-row justify-between items-center mt-10 w-[50%]">
+              <div className="flex items-center justify-center font-semibold font-inter text-3xl w-full">
+                {first_name} {last_name}
+              </div>
+            </div>
+            <p className="font-inter">{role}</p>
+            <p className="font-inter">{email}</p>
+          </div>
+          <div className="flex flex-col justify-between pl-7 mt-10 font-inter text-lg space-y-4">
+            <div>
+              <div className="font-semibold inline">Faculty:</div>{" "}
+              {edit ? (
+                <input
+                  type="text"
+                  value={faculty}
+                  onChange={(e) => setFaculty(e.target.value)}
+                />
+              ) : (
+                user.faculty
+              )}
+            </div>
+            <div>
+              <div className="font-semibold inline">Contact:</div>{" "}
+              {edit ? (
+                <input
+                  type="text"
+                  value={contact}
+                  onChange={(e) => setContact(e.target.value)}
+                />
+              ) : (
+                user.contact
+              )}
+            </div>
+            <div>
+              <div className="font-semibold inline">Office:</div>{" "}
+              {edit ? (
+                <input
+                  type="text"
+                  value={office}
+                  onChange={(e) => setOffice(e.target.value)}
+                />
+              ) : (
+                user.office
+              )}
+            </div>
+            <div>
+              <div className="font-semibold inline">Pronouns:</div>{" "}
+              {edit ? (
+                <input
+                  type="text"
+                  value={userPronouns}
+                  onChange={(e) => setUserPronouns(e.target.value)}
+                />
+              ) : (
+                user.user.pronouns
+              )}
+            </div>
+            <div>
+              <div className="font-semibold inline">Gender:</div>{" "}
+              {edit ? (
+                <input
+                  type="text"
+                  value={userGender}
+                  onChange={(e) => setUserGender(e.target.value)}
+                />
+              ) : (
+                user.user.gender
+              )}
+            </div>
+            <div>
+              <div className="font-semibold inline">Bio:</div>{" "}
+              {edit ? (
+                <textarea
+                  value={userBio}
+                  onChange={(e) => setUserBio(e.target.value)}
+                />
+              ) : (
+                user.user.bio
+              )}
+            </div>
+            {edit ? (
+              <div className="flex flex-row justify-between items-center pl-10 pr-14 pt-7">
+                <div className="w-[30%] rounded-full">
+                  <div
+                    className="rounded-full bg-dark-theme font-inter text-white font-semibold flex justify-center h-10 pt-2 hover:cursor-pointer"
+                    onClick={handleSave}
+                  >
+                    Save
+                  </div>
+                </div>
+                <div className="w-[30%] rounded-ful">
+                  <div
+                    className="rounded-full bg-dark-theme font-inter text-white font-semibold flex justify-center h-10 pt-2 hover:cursor-pointer"
+                    onClick={() => setEdit(false)}
+                  >
+                    Cancel
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div className="absolute top-32 right-[36%]">
+                <div
+                  className="flex justify-end pr-5 pt-5 text-3xl hover:cursor-pointer transition duration-500 select-none"
+                  onClick={handleEditClick}
+                >
+                  <FontAwesomeIcon icon={faPencil} />
+                </div>
+              </div>
+            )}
+          </div>
         </div>
-    );
+      </div>
+    </div>
+  );
 }
-
-export default TeacherProfile;

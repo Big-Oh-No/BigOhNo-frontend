@@ -11,6 +11,7 @@ import {
 } from "react-router-dom";
 import NotFound from './routes/NotFound';
 import Course from './routes/Course';
+import AssignmentList from './components/course/StudentCourse/AssignmentList';
 
 const router = createBrowserRouter([
   {
@@ -37,7 +38,10 @@ const router = createBrowserRouter([
   {
     path: "*",
     element: <NotFound />
-
+  },
+  {
+    path: "/assignments",
+    element: <AssignmentList />
   },
 ]);
 
