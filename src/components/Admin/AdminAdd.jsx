@@ -1,13 +1,17 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function AdminAdd() {
+  const navigate = useNavigate();
+  const [course_image_file, set_course_image_file] = useState();
+  const [syllabus_file, set_syllabus_file] = useState();
   const [formData, setFormData] = useState({
-    dpt: "",
+    email: localStorage.getItem("AuthCookie").email,
+    password: localStorage.getItem("AuthCookie").password,
+    dept: "",
     code: "",
     name: "",
     desc: "",
-    syllabus: null,
-    courseImg: null,
     term: "",
     year: 2024,
     credits: 0,
@@ -45,37 +49,37 @@ export default function AdminAdd() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = JSON.parse(localStorage.getItem("AuthCookie"));
-    console.log(formData.term)
+    console.log(formData)
     try {
-      const formData = new FormData();
-      formData.append("email", data["email"]);
-      formData.append("password", data["password"]);
-      formData.append("dept", `'${formData.dpt}'`);
-      formData.append("code", formData.code);
-      formData.append("course_name", formData.name);
-      formData.append("description", formData.desc);
-      formData.append("term", formData.term);
-      formData.append("year", formData.year);
-      formData.append("credits", formData.credits);
-      formData.append("total_seats", formData.totalSeats);
-      formData.append("teacher_email", formData.teacherEmail);
+      const d = new FormData();
+      d.append("email", data["email"]);
+      d.append("password", data["password"]);
+      d.append("dept", formData.dept);
+      d.append("code", formData.code);
+      d.append("course_name", formData.name);
+      d.append("description", formData.desc);
+      d.append("term", formData.term);
+      d.append("year", formData.year);
+      d.append("credits", formData.credits);
+      d.append("total_seats", formData.totalSeats);
+      d.append("teacher_email", formData.teacherEmail);
       
-      formData.append('syllabus_file', formData.syllabus);
-      formData.append('course_img', formData.courseImg);
-  
+      d.append('syllabus_file', syllabus_file);
+      d.append('course_img', course_image_file);
+     
       const response = await fetch(`${process.env.REACT_APP_BACKEND}/course/create`, {
         method: "POST",
-        body: formData
+        body: d,
       });
     
       if (response.status === 201) {
-        alert("Success");
+        navigate("/");
       } else {
         const res = await response.json();
-        console.log(res);
-        alert("Failed");
+        alert(res.detail);
       }
     } catch (error) {
+      alert("Unexpected Error Occurred!");
       console.error("Error:", error);
     }    
   };
@@ -91,9 +95,9 @@ export default function AdminAdd() {
             <input
               className="px-5 w-full focus:outline-none bg-light-theme border-[0.075rem] border-black h-14 text-lg rounded-xl"
               type="text"
-              id="dpt"
-              name="dpt"
-              value={formData.dpt}
+              id="dept"
+              name="dept"
+              value={formData.dept}
               onChange={handleChange}
               required
             />
@@ -150,7 +154,7 @@ export default function AdminAdd() {
               type="file"
               id="syllabus"
               name="syllabus"
-              onChange={handleChange}
+              onChange={(e) => set_syllabus_file(e.target.files[0])}
               required
             />
           </div>
@@ -164,7 +168,7 @@ export default function AdminAdd() {
               type="file"
               id="courseImg"
               name="courseImg"
-              onChange={handleChange}
+              onChange={(e) => set_course_image_file(e.target.files[0])}
               required
             />
           </div>
