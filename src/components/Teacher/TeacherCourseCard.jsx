@@ -1,16 +1,24 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import TeacherSyllabus from "./TeacherSyllabus";
 
 export default function TeacherCourseCard(props) {
   const navigate = useNavigate();
   const [isHovered, setIsHovered] = useState(false);
+
+  const handleViewSyllabus = () => {
+    navigate(`/course/${props.course.id}/TeacherSyllabus`);
+  }
+  const handleViewAssignments = () => {
+    navigate(`/course/${props.course.id}/TeacherAssignments`);
+  }
   return (
     <div
       className="bg-white border-[2.9px] border-neutral-200 w-[85%] h-[85%] rounded-2xl hover:scale-110 hover:shadow-2xl p-2 transition duration-500"
       style={{ boxShadow: isHovered ? "0 0 50px rgba(0, 0, 0, 0.25)" : "none" }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      onClick={() => navigate(`/course/${props.course.id}`)}
+      onClick={handleViewSyllabus}
     >
       <div className="h-[60%] overflow-clip flex items-center justify-center rounded-xl">
       {props.course.image_url ? (
