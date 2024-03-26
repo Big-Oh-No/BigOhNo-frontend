@@ -8,7 +8,7 @@ export default function AdminCourseCard(props) {
       className="bg-white border-[2.9px] border-neutral-200 w-[100%] h-[90%] rounded-2xl p-2 transition duration-500 flex flex-row justify-between pr-5"
     >
         {/* Image */}
-      <div className="h-full overflow-clip flex items-center justify-center rounded-xl ml-5">
+      <div className="h-full w-1/3 overflow-clip flex items-center justify-center rounded-xl ml-5">
       {props.course.image_url ? (
         <img className="rounded-xl" src={props.course.image_url} alt="course_image"/>
       ) : (
