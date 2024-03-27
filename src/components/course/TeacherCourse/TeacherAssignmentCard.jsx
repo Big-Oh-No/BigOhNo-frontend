@@ -3,9 +3,10 @@ import { useState } from "react";
 import TeacherAssignmentTable from "./TeacherAssignmentTable";
 
 function TeacherAssignmentCard(props) {
+  
 
   return (
-    <div className="bg-white border-[2.9px] border-neutral-200 w-full h-full rounded-3xl p-2 transition duration-500 flex flex-row justify-between pr-5" >
+    <div className="bg-white border-[2.9px] border-neutral-200 w-full h-full rounded-3xl p-2 transition duration-500 flex flex-row justify-between pr-5" onClick={() => props.onClick(props.assignment)}>
       <div className="mt-5  w-full flex flex-col p-5">
 
         <div className="flex flex-row justify-between">
