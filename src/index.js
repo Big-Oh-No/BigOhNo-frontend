@@ -10,7 +10,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import NotFound from './routes/NotFound';
-import Course from './routes/Course';
+import CoursePage from './routes/Course';
 
 const router = createBrowserRouter([
   {
@@ -27,7 +27,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/course/:id",
-    element: <Course />
+    element: <CoursePage />
   },
   {
     path: "/hold",

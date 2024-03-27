@@ -22,7 +22,7 @@ export default function SideBar(props) {
     <div className="flex items-center w-full h-full">
       <div
         onMouseEnter={toggleSidebar}
-        className={`absolute z-20 w-14 h-20 rounded-r-full bg-dark-theme text-white flex flex-col justify-center items-center text-3xl pr-2 ${
+        className={`absolute w-14 h-20 rounded-r-full bg-dark-theme text-white flex flex-col justify-center items-center text-3xl pr-2 ${
           !sidebarVisible ? "translate-x-0" : "-translate-x-full"
         } transition-transform duration-300 ease-in-out`}
       >
@@ -31,7 +31,7 @@ export default function SideBar(props) {
       <div className="h-full w-full flex flex-col justify-center">
         <div
           onMouseLeave={hideSidebar}
-          className={`h-[50%] w-full bg-dark-theme flex flex-col items-center py-10 space-y-5 rounded-br-[100px] rounded-tr-[100px] ${
+          className={`h-full w-full bg-dark-theme flex flex-col items-center py-10 space-y-5 rounded-br-[100px] rounded-tr-[100px] ${
             sidebarVisible ? "translate-x-0" : "-translate-x-full"
           } transition-transform duration-300 ease-in-out`}
           style={{ boxShadow: "0 0 20px rgba(0, 0, 0, 0.14)" }}
