@@ -122,7 +122,8 @@ export default function CoursePage(props) {
         <AccessDenied />
       ) : (
         <div className="w-full h-full flex flex-row">
-          <div className="h-[50%] w-[17%] left-0 top-1/4 fixed">
+          {data ?
+          <><div className="h-[50%] w-[17%] left-0 top-1/4 fixed">
             <SideBar changeHandler={(e) => setPage(e)} />
           </div>
           <div className="w-full">
@@ -139,7 +140,7 @@ export default function CoursePage(props) {
             ) : (
               <></>
             )}
-          </div>
+          </div></> : <></>}
         </div>
       )}
     </div>
