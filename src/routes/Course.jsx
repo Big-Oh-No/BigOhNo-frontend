@@ -1,20 +1,27 @@
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import AssignmentCard from "../components/course/StudentCourse/AssignmentCard";
-import AssignmentList from "../components/course/StudentCourse/AssignmentList";
-
-
+import { useNavigate } from "react-router-dom";
+import AccessDenied from "./AccessDenied";
 
 export default function Course(props) {
-    const params = useParams();
+  const params = useParams();
+  const navigate = useNavigate();
+  // const [validCourseID, setValidCourseID] = useState(null);
+  const [accessDenied, setAccessDenied] = useState(false);
+
+  // useEffect(() => {
+  //   const courseID = parseInt(params.id);
+  //   if (isValidCourseID(courseID)) {
+  //     setValidCourseID(courseID);
+  //   } else {
+  //     navigate("/");
+  //     return;
+  //   }
+  // });
 
   return (
-    <div>
-    <AssignmentList />
-  
-    {/* // <div className="w-screen h-screen">
-    //     COURSE ID: {params.id}
-    // </div> */}
-
+    <div className="w-screen h-screen">
+      {accessDenied ? <AccessDenied /> : <div>Course ID: {params.id}</div>}
     </div>
   );
 }
