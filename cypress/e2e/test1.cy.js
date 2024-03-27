@@ -2,6 +2,9 @@
 //through the dashboard
 
 describe('Visiting the website', () => {
+  beforeEach(() => {
+    cy.viewport(1965, 1087); // Set viewport dimensions
+  });
   
   it('Sign In', () => {
     cy.visit('http://localhost:3000') // visit the website
@@ -15,7 +18,7 @@ describe('Visiting the website', () => {
     cy.wait(2000)
 
     //Select Sign-In
-    cy.get('.mt-12 > .flex').click()
+    cy.get('.mt-12 > .flex').click({ delay: 100 })
     //cy.get('.mt-12 > .flex').invoke("show").click({ delay: 100 });
     cy.wait(4000)
 

@@ -1,6 +1,9 @@
 //Test Case 4: Student successfully Sign Ups 
 
 describe('Visiting the website', () => {
+  beforeEach(() => {
+    cy.viewport(1965, 1087); // Set viewport dimensions
+  });
   
   it('Sign Up and Sign In', () => {
     cy.visit('http://localhost:3000') // visit the website

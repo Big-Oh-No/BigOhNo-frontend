@@ -2,6 +2,10 @@
 //through the dashboard
 
 describe('Visiting the website', () => {
+
+  beforeEach(() => {
+    cy.viewport(1965, 1087); // Set viewport dimensions
+  });
   
   it('Sign In', () => {
     cy.visit('http://localhost:3000') //  visit the website

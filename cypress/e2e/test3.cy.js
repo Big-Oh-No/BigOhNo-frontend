@@ -2,6 +2,10 @@
 //through the dashboard
 
 describe('Visiting the website', () => {
+
+  beforeEach(() => {
+    cy.viewport(1965, 1087); // Set viewport dimensions
+  });
   
   it('Sign In', () => {
     cy.visit('http://localhost:3000') // visit the website
@@ -35,8 +39,8 @@ describe('Visiting the website', () => {
     cy.get('.flex-row > :nth-child(5)').click()
     cy.wait(2000)
 
-    cy.scrollTo('bottom', { duration: 2000 })
-    cy.wait(2000)
+    // cy.scrollTo('bottom', { duration: 2000 })
+    // cy.wait(2000)
 
     //Check profile
     cy.get('.flex-row > :nth-child(6)').click()
