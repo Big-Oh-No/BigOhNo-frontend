@@ -1,8 +1,7 @@
 
 import React from 'react'
-import CourseCard from '../common/CourseCard'
 
-function TeacherAssignment() {
+export default function TeacherAssignments() {
   return (
     <>
      <div className="text-5xl font-bold font-inter pt-10 w-full pl-10 pb-10 bg-dark-theme z-20 text-white fixed">
@@ -25,5 +24,3 @@ function TeacherAssignment() {
    
   )
 }
-
-export default TeacherAssignment
