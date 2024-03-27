@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+
 export default function StudentCourseCard(props) {
   const navigate = useNavigate();
   const [isHovered, setIsHovered] = useState(false);
+
   return (
     <div
       className="bg-white border-[2.9px] border-neutral-200 w-[85%] h-[85%] rounded-2xl hover:scale-110 hover:shadow-2xl p-2 transition duration-500 hover:cursor-pointer"
@@ -16,7 +18,7 @@ export default function StudentCourseCard(props) {
       {props.course.image_url ? (
         <img className="rounded-xl" src={props.course.image_url} alt="course_image"/>
       ) : (
-        <img className="rounded-xl" src={require("../../assets/course.jpeg")} alt="course_image"/>
+        <img className="rounded-xl" src={require("../../assets/course.jpeg")} alt="corse_image"/>
       )}
       </div>
       <div className="text-2xl p-2 mt-5 font-semibold font-inter truncate w-full">

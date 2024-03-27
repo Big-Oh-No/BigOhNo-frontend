@@ -8,40 +8,44 @@ export default function AdminEnroll() {
   const navigate = useNavigate();
 
   const handleRequest = async (name, student_id, course_id, dir) => {
+    if (comment === null || comment === undefined || comment.length === 0) {
+      showAlert("Please enter a comment");
+      return;
+    }
     try {
-        const data = JSON.parse(localStorage.getItem("AuthCookie"));
-        const response = await fetch(
-          `${process.env.REACT_APP_BACKEND}/course/enrollment_update/${dir}`,
-          {
-            method: "PATCH",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              email: data["email"],
-              password: data["password"],
-              student_id: student_id,
-              course_id: course_id,
-              comment: comment
-            }),
-          }
-        );
-  
-        if (response.status === 201) {
-          init();
-          showAlert(`${name}'s enrollment request handled sucessfully!`);
-        } else {
-          const detail = await response.json();
-          showAlert(detail["detail"]);
+      const data = JSON.parse(localStorage.getItem("AuthCookie"));
+      const response = await fetch(
+        `${process.env.REACT_APP_BACKEND}/course/enrollment_update/${dir}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: data["email"],
+            password: data["password"],
+            student_id: student_id,
+            course_id: course_id,
+            comment: comment,
+          }),
         }
-      } catch (error) {
-        showAlert("Unexpected error occurred");
+      );
+
+      if (response.status === 201) {
+        init();
+        showAlert(`${name}'s enrollment request handled sucessfully!`);
+      } else {
+        const detail = await response.json();
+        showAlert(detail["detail"]);
       }
-    };
-  
-    const showAlert = (message) => {
-      alert(`${message}`);
-    };
+    } catch (error) {
+      showAlert("Unexpected error occurred");
+    }
+  };
+
+  const showAlert = (message) => {
+    alert(`${message}`);
+  };
 
   useEffect(() => init, []);
   const init = async () => {
@@ -132,6 +136,7 @@ export default function AdminEnroll() {
                     <textarea
                       className="w-full h-full border p-2"
                       onChange={(value) => setComment(value.target.value)}
+                      required
                     ></textarea>
                   </td>
 
@@ -139,13 +144,27 @@ export default function AdminEnroll() {
                     <div className=" w-full h-full py-3 text-3xl flex justify-around">
                       <div
                         className="flex justify-center hover:cursor-pointer"
-                        onClick={() => {handleRequest(`${request.firstName} ${request.lastName}`, request.student_id, request.course_id, 0)}}
+                        onClick={() => {
+                          handleRequest(
+                            `${request.firstName} ${request.lastName}`,
+                            request.student_id,
+                            request.course_id,
+                            0
+                          );
+                        }}
                       >
                         ✅
                       </div>
                       <div
                         className="flex justify-center hover:cursor-pointer"
-                        onClick={() => {handleRequest(`${request.firstName} ${request.lastName}`,request.student_id, request.course_id, 1)}}
+                        onClick={() => {
+                          handleRequest(
+                            `${request.firstName} ${request.lastName}`,
+                            request.student_id,
+                            request.course_id,
+                            1
+                          );
+                        }}
                       >
                         ❌
                       </div>
