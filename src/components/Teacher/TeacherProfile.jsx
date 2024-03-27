@@ -2,8 +2,10 @@ import React from "react";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencil } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
 
 export default function AdminProfile(props) {
+  const navigate = useNavigate();
   // destructure
   const { user } = props;
   const {
@@ -31,8 +33,40 @@ export default function AdminProfile(props) {
     setEdit(true);
   };
 
-  const handleSave = () => {
-    setEdit(false);
+  const handleSave = async () => {
+    try {
+      const data = JSON.parse(localStorage.getItem("AuthCookie"));
+
+      const d = new FormData();
+
+      d.append("email", data["email"]);
+      d.append("password", data["password"]);
+      d.append("bio", userBio);
+      d.append("gender", userGender);
+      d.append("pronouns", userPronouns);
+      if (userProfileImage) d.append("profile_image", userProfileImage);
+      d.append("contact", contact);
+      d.append("office", office);
+      d.append("faculty", faculty);
+
+      const response = await fetch(
+        `${process.env.REACT_APP_BACKEND}/user/edit`,
+        {
+          method: "PATCH",
+          body: d
+        }
+      );
+
+      if (response.status === 200) {
+        navigate("/");
+        setEdit(false);
+      } else {
+        const detail = await response.json();
+        alert(detail["detail"]);
+      }
+    } catch (error) {
+      alert("Unexpected error occurred");
+    }
   };
 
   return (
@@ -59,7 +93,7 @@ export default function AdminProfile(props) {
                     type="file"
                     accept="image/*"
                     onChange={(e) =>
-                      setProfileImage(URL.createObjectURL(e.target.files[0]))
+                      setProfileImage(e.target.files[0])
                     }
                   />
                 </div>
@@ -125,11 +159,18 @@ export default function AdminProfile(props) {
             <div>
               <div className="font-semibold inline">Gender:</div>{" "}
               {edit ? (
-                <input
-                  type="text"
-                  value={userGender}
+                <select
+                  className="focus:outline-none bg-light-theme border-[0.075rem] border-black p-2 text-lg rounded-xl"
+                  id="gender"
+                  name="gender"
+                  value={gender}
                   onChange={(e) => setUserGender(e.target.value)}
-                />
+                >
+                  <option value="">Select Gender</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="other">Other</option>
+                </select>
               ) : (
                 user.user.gender
               )}
