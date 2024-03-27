@@ -19,6 +19,9 @@ describe('Visiting the website', () => {
     //cy.get('.mt-12 > .flex').invoke("show").click({ delay: 100 });
     cy.wait(4000)
 
+    cy.scrollTo('bottom', { duration: 2000 })
+    cy.wait(2000)
+
     //check Admin Verify
     cy.get('.flex-row > :nth-child(3)').click()
     cy.wait(2000)
@@ -32,12 +35,15 @@ describe('Visiting the website', () => {
     cy.get('.flex-row > :nth-child(5)').click()
     cy.wait(2000)
 
+    cy.scrollTo('bottom', { duration: 2000 })
+    cy.wait(2000)
+
     //Check profile
     cy.get('.flex-row > :nth-child(6)').click()
     cy.wait(4000)
 
     //exit
-    cy.get('.absolute > .flex-row > :nth-child(1)').click()
+    cy.get('.fixed > .flex-row > :nth-child(1)').click()
 
 
    })

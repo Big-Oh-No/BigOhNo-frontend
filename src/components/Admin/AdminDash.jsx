@@ -16,7 +16,7 @@ import AdminProfile from "./AdminProfile";
 import Loading from "../common/Loading";
 import { useNavigate } from "react-router-dom";
 
-export default function AdminDash() {
+export default function AdminDash(props) {
   const navigate = useNavigate();
   const [selectedOption, setSelectedOption] = useState("home");
   const OPTIONS = [
@@ -42,13 +42,13 @@ export default function AdminDash() {
       ) : selectedOption === "enroll" ? (
         <AdminEnroll />
       ) : selectedOption === "profile" ? (
-        <AdminProfile />
+        <AdminProfile user={props.profile}/>
       ) : (selectedOption === "logout" && handleLogout()) ? (
         <Loading />
       ) : (
         <Loading />
       )}
-      <div className="absolute bottom-8 w-full h-20 flex flex-row justify-center">
+      <div className="fixed bottom-8 w-full h-20 flex flex-row justify-center">
         <NavBar options={OPTIONS} default="home" onChange={setSelectedOption}/>
       </div>
     </div>

@@ -6,24 +6,22 @@ import CourseCard from "../common/CourseCard";
 export default function StudentHome() {
   const [courses, setCourses] = useState([]);
   const navigate = useNavigate();
+
   useEffect(() => init, []);
   const init = async () => {
     const data = JSON.parse(localStorage.getItem("AuthCookie"));
 
     try {
-      const response = await fetch(
-        `${process.env.REACT_APP_BACKEND}/course/`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email: data["email"],
-            password: data["password"],
-          }),
-        }
-      );
+      const response = await fetch(`${process.env.REACT_APP_BACKEND}/course/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: data["email"],
+          password: data["password"],
+        }),
+      });
 
       if (response.status === 200) {
         const response_json = await response.json();
@@ -59,29 +57,31 @@ export default function StudentHome() {
     }
   };
   return (
-    <div className="pt-10 w-screen h-screen">
-      <div className="absolute text-5xl font-bold font-inter top-14 left-10">
+    <>
+      <div className="text-5xl font-bold font-inter pt-10 w-full pl-10 pb-10 bg-dark-theme z-20 text-white fixed">
         Discover Courses
       </div>
-      {courses && courses.length === 0 && (
-        <div className="w-full h-full flex justify-center items-center text-2xl">
-          No available active courses
-        </div>
-      )}
-      {courses && courses.length !== 0 && (
-        <div className="flex w-full justify-center mt-[7rem]">
-          <div className="flex flex-col w-full px-32">
-            {courses.map((course) => {
-              return (
-                <div className="w-full h-[19rem] flex justify-center items-center">
-                  <CourseCard course={course} />
-                </div>
-              );
-            })}
+      <div className="pt-10 w-screen h-screen">
+        {courses && courses.length === 0 && (
+          <div className="w-full h-full flex justify-center items-center text-2xl">
+            No available active courses
           </div>
-        </div>
-      )}
-      <div className="h-[13%]"></div>
-    </div>
+        )}
+        {courses && courses.length !== 0 && (
+          <div className="flex w-full justify-center mt-[7rem]">
+            <div className="flex flex-col w-full px-32">
+              {courses.map((course) => {
+                return (
+                  <div className="w-full h-[19rem] flex justify-center items-center">
+                    <CourseCard course={course} />
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
+        <div className="h-[13%]"></div>
+      </div>
+    </>
   );
 }

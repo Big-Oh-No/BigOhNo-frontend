@@ -15,7 +15,7 @@ describe('Visiting the website', () => {
     cy.wait(2000)
 
     //Select Sign-In
-    cy.get('.mt-12 > .flex').click({ delay: 100 })
+    cy.get('.mt-12 > .flex').click()
     //cy.get('.mt-12 > .flex').invoke("show").click({ delay: 100 });
     cy.wait(4000)
 
