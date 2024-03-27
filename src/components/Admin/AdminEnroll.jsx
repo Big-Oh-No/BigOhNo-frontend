@@ -8,6 +8,10 @@ export default function AdminEnroll() {
   const navigate = useNavigate();
 
   const handleRequest = async (name, student_id, course_id, dir) => {
+    if (comment === null || comment === undefined || comment.length === 0) {
+      showAlert("Please enter a comment");
+      return;
+    }
     try {
       const data = JSON.parse(localStorage.getItem("AuthCookie"));
       const response = await fetch(
@@ -30,8 +34,6 @@ export default function AdminEnroll() {
       if (response.status === 201) {
         init();
         showAlert(`${name}'s enrollment request handled sucessfully!`);
-      } else if (comment === null || comment === undefined) {
-        showAlert("Please enter a comment");
       } else {
         const detail = await response.json();
         showAlert(detail["detail"]);
