@@ -2,26 +2,21 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import AccessDenied from "./AccessDenied";
+import SideBar from "../components/SideBar";
 
 export default function Course(props) {
   const params = useParams();
   const navigate = useNavigate();
-  // const [validCourseID, setValidCourseID] = useState(null);
   const [accessDenied, setAccessDenied] = useState(false);
+  const [page, setPage] = useState("syllabus");
 
-  // useEffect(() => {
-  //   const courseID = parseInt(params.id);
-  //   if (isValidCourseID(courseID)) {
-  //     setValidCourseID(courseID);
-  //   } else {
-  //     navigate("/");
-  //     return;
-  //   }
-  // });
 
   return (
-    <div className="w-screen h-screen">
-      {accessDenied ? <AccessDenied /> : <div>Course ID: {params.id}</div>}
+    <div className="w-screen h-screen bg-light-theme">
+      {accessDenied ? <AccessDenied /> : <div className="w-full h-full flex flex-row">
+        <div className="h-full w-[17%]"><SideBar changeHandler={(e) => setPage(e)}/></div>
+        {page}
+        </div>}
     </div>
   );
 }
