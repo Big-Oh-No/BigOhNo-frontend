@@ -13,15 +13,15 @@ describe('Visiting the website', () => {
     cy.get('.mt-2 > .inline').click({ delay: 100 })
 
     //enter first Name
-    cy.get('.mt-8 > :nth-child(1) > .px-5').type('Harry',{ delay: 100 })
+    cy.get('.mt-8 > :nth-child(1) > .px-5').type('Jessie',{ delay: 100 })
     cy.wait(1000)
 
     //enter last Name
-    cy.get('.mt-8 > :nth-child(2) > .px-5').type('Sue',{ delay: 100 ,force: true})
+    cy.get('.mt-8 > :nth-child(2) > .px-5').type('Je',{ delay: 100 ,force: true})
     cy.wait(1000)
 
     //enter email 
-    cy.get('.mt-5.flex-col > .px-5').type('Haree@korse.com',{ delay: 100 ,force: true})
+    cy.get('.mt-5.flex-col > .px-5').type('jj@korse.com',{ delay: 100 ,force: true})
     cy.wait(1000)
 
     //Create password

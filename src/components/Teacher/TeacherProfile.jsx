@@ -196,7 +196,7 @@ export default function AdminProfile(props) {
                     Save
                   </div>
                 </div>
-                <div className="w-[30%] rounded-ful">
+                <div className="w-[30%] rounded-full">
                   <div
                     className="rounded-full bg-dark-theme font-inter text-white font-semibold flex justify-center h-10 pt-2 hover:cursor-pointer"
                     onClick={() => setEdit(false)}
