@@ -61,7 +61,9 @@ describe('Visiting the website', () => {
 
     //cy.get('[class*="w-30"][class*="rounded-full"] > .rounded-full').click();
 
-    // change the profile picture
+    //change the profile picture
+    cy.pause()
+    cy.wait(3000)
 
     // const fileName = 'Profile'; // Replace with the name of the file you want to upload
     // const filePath = '/Users/apoorvadevarakonda/Documents/BigOhNo-frontend/images/images.jpeg'; 

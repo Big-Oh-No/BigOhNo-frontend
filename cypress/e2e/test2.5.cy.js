@@ -11,11 +11,11 @@ describe('Visiting the website', () => {
     cy.visit('http://localhost:3000') // visit the website
     cy.wait(1000)
     //enter email to sign in
-    cy.get('.mt-10 > .focus\\:outline-none').type('lj@korse.com',{ delay: 100 })
+    cy.get('.mt-10 > .focus\\:outline-none').type('J1@korse.com',{ delay: 100 })
     cy.wait(1000)
 
     //enter password
-    cy.get('.w-\\[92\\.5\\%\\]').type('password',{ delay: 100 })
+    cy.get('.w-\\[92\\.5\\%\\]').type('123456',{ delay: 100 })
     cy.wait(2000)
 
     //Select Sign-In
@@ -31,12 +31,12 @@ describe('Visiting the website', () => {
 
 
     //Submit an enrollment request
-    cy.get(':nth-child(4) > .bg-white > .w-full > .items-end > .flex').click({ delay: 100 })
-    cy.wait(2000)
+    // cy.get(':nth-child(4) > .bg-white > .w-full > .items-end > .flex').click({ delay: 100 })
+    // cy.wait(2000)
 
     //Check request status
     cy.get('.flex-row > :nth-child(4)').click({ delay: 100 })
-    cy.wait(2000)
+    cy.wait(4000)
 
     //exit
     cy.get('.fixed > .flex-row > :nth-child(1)').click({ delay: 100 })
@@ -73,11 +73,11 @@ describe('Visiting the website', () => {
 
 
       //Re-Login as student
-      cy.get('.mt-10 > .focus\\:outline-none').type('lj@korse.com',{ delay: 100 })
+      cy.get('.mt-10 > .focus\\:outline-none').type('J1@korse.com',{ delay: 100 })
       cy.wait(1000)
   
       //enter password
-      cy.get('.w-\\[92\\.5\\%\\]').type('password',{ delay: 100 })
+      cy.get('.w-\\[92\\.5\\%\\]').type('123456',{ delay: 100 })
       cy.wait(2000)
   
       //Select Sign-In

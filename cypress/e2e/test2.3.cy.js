@@ -40,12 +40,12 @@ describe('Visiting the website', () => {
     cy.wait(2000)
 
     //Add Details
-    cy.get('#dept').type('DATA',{ delay: 100 })
+    cy.get('#dept').type('MATH',{ delay: 100 })
     cy.get('#code').type('101',{ delay: 100 })
-    cy.get('#name').type('Introduction to R',{ delay: 100 })
-    cy.get('#desc').type('Introduction to R language, Learn Basics of Data Ananlysis.',{ delay: 100 })
+    cy.get('#name').type('CALC 2',{ delay: 100 })
+    cy.get('#desc').type('Learn Integration.',{ delay: 100 })
     cy.pause();
-    cy.get('#term').select('W1')
+    cy.get('#term').select('W2')
     cy.get('#credits').clear()
     cy.get('#credits').type('3',{ delay: 100 })
     cy.get('#totalSeats').type('100',{ delay: 100 })

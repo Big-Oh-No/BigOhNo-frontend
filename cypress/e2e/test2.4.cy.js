@@ -43,11 +43,11 @@ describe('Visiting the website', () => {
     cy.visit('http://localhost:3000') // visit the website
     cy.wait(1000)
     //enter email to sign in
-    cy.get('.mt-10 > .focus\\:outline-none').type('lj@korse.com',{ delay: 100 })
+    cy.get('.mt-10 > .focus\\:outline-none').type('J1@korse.com',{ delay: 100 })
     cy.wait(1000)
 
     //enter password
-    cy.get('.w-\\[92\\.5\\%\\]').type('password',{ delay: 100 })
+    cy.get('.w-\\[92\\.5\\%\\]').type('123456',{ delay: 100 })
     cy.wait(2000)
 
     //Select Sign-In
