@@ -1,6 +1,9 @@
 //Test Case 2: Teacher Unbale to Sign In , error in password
 
 describe('Visiting the website', () => {
+  beforeEach(() => {
+    cy.viewport(1965, 1087); // Set viewport dimensions
+  });
   
   it('Sign In', () => {
     cy.visit('http://localhost:3000') //  visit the website
