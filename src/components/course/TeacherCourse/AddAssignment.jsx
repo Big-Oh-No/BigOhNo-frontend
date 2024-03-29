@@ -1,11 +1,15 @@
 import React from 'react';
 import { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faQuestion } from '@fortawesome/free-solid-svg-icons';
+import MCQAdd from './MCQAdd';
 
 export default function AddAssignment(props) {
   const [title, setTitle] = useState();
   const [deadline, setDeadline] = useState();
   const [file, setFile] = useState();
   const [grade, setGrade] = useState();
+  const [mcq, setMACQ] = useState(false);
 
   const submit = async () => {
     const data = JSON.parse(localStorage.getItem("AuthCookie"));
@@ -39,9 +43,13 @@ export default function AddAssignment(props) {
 
  
   return (
-    <div className='rounded-md bg-light-theme w-screen h-screen flex justify-center items-center '>
-        <div className="flex flex-col w-screen h-screen px-14 pt-10 font-inter">
-      <h2 className="text-5xl font-semibold">Add Assignment</h2>
+    <div className='rounded-md bg-light-theme w-full h-full flex justify-center items-center'>
+      <h2 className="text-5xl font-bold font-inter pt-10 w-full top-0 pl-10 pb-10 bg-dark-theme z-20 text-white fixed">Add Assignment</h2>
+
+      <div className="fixed bottom-10 right-10 flex justify-center items-center bg-dark-theme text-white text-2xl p-2 rounded-full w-[5.2rem] h-[5.2rem] hover:opacity-75 hover:cursor-pointer" onClick={() => setMACQ(!mcq)}>{mcq ? "File" : "MCQ"}</div>
+        <div className="flex flex-col w-screen h-screen px-14 font-inter pt-32">
+{
+  mcq ? <MCQAdd data={props.data}/> :
       <form className="flex justify-center items-center flex-col mt-10 space-y-2">
         <div className="flex flex-row justify-between w-[80%] mt-4">
           <div className="w-[40%]">
@@ -105,6 +113,7 @@ export default function AddAssignment(props) {
           </div>
         </div>
       </form>
+}
       <div className="h-[13%]"></div>
     </div>
     </div>
