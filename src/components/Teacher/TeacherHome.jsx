@@ -69,9 +69,10 @@ export default function TeacherHome() {
         <div className="grid grid-cols-4 w-[97%] overflow-auto p-10">
           {courses.map((course) => {
             return (
+              course.status === "active" ?
               <div className="w-full h-[26rem] flex justify-center items-center">
                 <TeacherCourseCard course={course} />
-              </div>
+              </div> : <></>
             );
           })}
         </div>
