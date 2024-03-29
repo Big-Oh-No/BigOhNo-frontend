@@ -1,6 +1,6 @@
 export default function Syllabus(props){
     return(
-        <div className="w-screen h-screen">
+        <div className="w-screen h-screen overflow-scroll">
      <div className="text-5xl font-semibold font-inter pt-10 w-full pl-10 pb-10 bg-dark-theme z-20 text-white fixed">
         Syllabus
       </div>
