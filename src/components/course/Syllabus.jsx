@@ -6,18 +6,15 @@ export default function Syllabus(props){
       </div>
       <div className='pt-32 flex flex-col w-full h-full p-5 px-10 space-y-10'>
         <div className="flex flex-row justify-between">
-        <div className="mt-10 font-semibold  text-5xl p-5 rounded-xl w-max">{props.data.meta.name}</div>
-
-        {/* <div className="mt-10 font-semibold text-white text-2xl bg-black p-5 rounded-xl w-max">Instructor: {props.data.meta.teacher_name}</div> */}
-
+        <div className="pt-10 font-semibold  text-5xl p-5 rounded-xl w-max">{props.data.meta.name}</div>
         </div>
-        <div className="flex flex-row justify-center items-center space-x-32">
+        <div className="flex flex-row justify-between items-center space-x-32">
         <div className="flex flex-col space-y-2">
             <div className="text-2xl font-semibold">Description</div>
             <div className="font-semibold text-black text-xl rounded-xl ">{props.data.meta.description}</div>
         </div>
-        <div className="h-full w-1/3 overflow-clip flex items-center justify-center rounded-xl ml-5">
-            <img src={props.data.meta.image_url ? `props.data.meta.image_url` : require("../../assets/course.jpeg")} alt="course image" />
+        <div className="h-full w-[25rem] overflow-clip flex items-center justify-between rounded-xl ml-5">
+            <img src={props.data.meta.image_url ? props.data.meta.image_url : require("../../assets/course.jpeg")} alt="course image" />
         </div>
         </div>
         <div className="flex flex-col items-center">
