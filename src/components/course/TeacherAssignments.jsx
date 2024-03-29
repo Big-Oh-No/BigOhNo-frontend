@@ -48,7 +48,7 @@ export default function TeacherAssignments(props) {
               </div>
             </div>
           </div>
-        </div> ) : <AddAssignment onClick={closeAssignmentAdder}/>
+        </div> ) : <AddAssignment data={props.data} onClick={closeAssignmentAdder}/>
        
       )}
     </div>

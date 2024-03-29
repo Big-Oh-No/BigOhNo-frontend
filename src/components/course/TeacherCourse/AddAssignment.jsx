@@ -1,6 +1,42 @@
 import React from 'react';
+import { useState } from 'react';
 
-export default function AddAssignment() {
+export default function AddAssignment(props) {
+  const [title, setTitle] = useState();
+  const [deadline, setDeadline] = useState();
+  const [file, setFile] = useState();
+  const [grade, setGrade] = useState();
+
+  const submit = async () => {
+    const data = JSON.parse(localStorage.getItem("AuthCookie"));
+    try {
+      const d = new FormData();
+      d.append("email", data["email"]);
+      d.append("password", data["password"]);
+      d.append("course_id", props.data.meta.id);
+      d.append("title", title);
+      d.append("deadline", deadline);
+      d.append("total_grade", grade);
+      d.append('assignment_file', file);
+     
+      const response = await fetch(`${process.env.REACT_APP_BACKEND}/course/assignment`, {
+        method: "POST",
+        body: d,
+      });
+    
+      if (response.status === 201) {
+        window.location.reload();
+      } else {
+        const res = await response.json();
+        alert(res.detail);
+      }
+    } catch (error) {
+      alert("Unexpected Error Occurred!");
+      console.error("Error:", error);
+    }
+  }
+
+
  
   return (
     <div className='rounded-md bg-light-theme w-screen h-screen flex justify-center items-center '>
@@ -15,19 +51,24 @@ export default function AddAssignment() {
               type="text"
               id="title"
               name="title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
               required
             />
           </div>
           <div className="w-[40%]">
-            <label className="block font-semibold text-xl">Deadline</label>
-            <input
-              className="px-5 w-full focus:outline-none bg-light-theme border-[0.075rem] border-black h-14 text-lg rounded-xl"
-              type="text"
-              id="date"
-              name="date"
-              required
-            />
-          </div>
+          <label className="block font-semibold text-xl">Deadline (PST)</label>
+          <input
+            className="px-5 w-full focus:outline-none bg-light-theme border-[0.075rem] border-black h-14 text-lg rounded-xl"
+            type="datetime-local"
+            id="deadline"
+            name="deadline"
+            value={deadline}
+            onChange={(e) => setDeadline(e.target.value)}
+            required
+          />
+        </div>
+
         </div>
         <div className="flex flex-row justify-between w-[80%] mt-4">
         <div className="w-[40%]">
@@ -37,17 +78,20 @@ export default function AddAssignment() {
             type="file"
             id="assignment"
             name="assignment"
+            onChange={(e) => setFile(e.target.files[0])}
             required
           />
         </div>
         <div className="w-[40%]">
           <div className="mt-4 w-[40%]">
-            <label className="block font-semibold mb-2 text-xl">Grade</label>
+            <label className="block font-semibold mb-2 text-xl">Max Grade</label>
             <input
               className="px-5 w-full focus:outline-none bg-light-theme border-[0.075rem] border-black h-14 text-lg rounded-xl"
               type="number"
               id="grade"
               name="grade"
+              value={grade}
+              onChange={(e) => setGrade(e.target.value)}
               required
             />
           </div>
@@ -56,8 +100,8 @@ export default function AddAssignment() {
         
        
         <div className="flex justify-center items-center w-[50%] pt-32">
-          <div className="flex items-center justify-center w-[25%] rounded-full border-black font-inter text-2xl bg-dark-theme font-semibold hover:cursor-pointer py-3 hover:bg-light-theme border border-transparent hover:border-black text-white hover:text-black transition duration-500 hover:scale-105 select-none">
-            <button type="submit">Submit</button>
+          <div onClick={submit} className="flex items-center justify-center w-[25%] rounded-full border-black font-inter text-2xl bg-dark-theme font-semibold hover:cursor-pointer py-3 hover:bg-light-theme border border-transparent hover:border-black text-white hover:text-black transition duration-500 hover:scale-105 select-none">
+            Submit
           </div>
         </div>
       </form>
