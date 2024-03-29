@@ -33,7 +33,7 @@ export default function TeacherAssignments(props) {
             <div className="z-20 bottom-10 right-10 w-20 h-20 rounded-full flex items-center justify-center fixed bg-dark-theme text-white text-3xl hover:bg-opacity-80 hover:cursor-pointer" onClick={() => {setAddAssignment(true); }}>
             <FontAwesomeIcon icon={faPlus} />
             </div>
-            <div className="flex h-full w-full justify-center mt-[7rem]">
+            <div className="flex h-full w-full justify-center pt-[7rem]">
               <div className="flex flex-col items-center h-full w-full px-32 space-y-5">
                 {props.data.assignments.map((e) => {
                   return (
