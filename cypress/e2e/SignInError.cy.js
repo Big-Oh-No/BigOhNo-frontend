@@ -7,31 +7,31 @@ describe('Visiting the website', () => {
   
   it('Sign In', () => {
     cy.visit('http://localhost:3000') //  visit the website
-    //cy.wait(1000)
+    
 
     //enter email to sign in
     cy.get('.mt-10 > .focus\\:outline-none').type('teacher@korse.com')
-    //cy.wait(1000)
+    
 
     //enter  Incorrect password
     cy.get('.w-\\[92\\.5\\%\\]').type('password')
-    //cy.wait(2000)
+    
 
     //Select Sign-In
     cy.get('.mt-12 > .flex').click()
-    //cy.get('.mt-12 > .flex').invoke("show").click({ delay: 100 });
-    //cy.wait(4000)
+    //cy.get('.mt-12 > .flex').invoke("show").click();
+    
     
     //enter correct 
     cy.get('.w-\\[92\\.5\\%\\]').clear()
-    //cy.wait(2000)
+    
     cy.get('.w-\\[92\\.5\\%\\]').type('password')
-    //cy.wait(2000)
+    
 
     //Select Sign-In
     cy.get('.mt-12 > .flex').click()
-    //cy.get('.mt-12 > .flex').invoke("show").click({ delay: 100 });
-    //cy.wait(4000)
+    //cy.get('.mt-12 > .flex').invoke("show").click();
+    
     
 
     //exit
