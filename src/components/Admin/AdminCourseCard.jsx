@@ -3,9 +3,35 @@ import { useNavigate } from "react-router-dom";
 
 export default function AdminCourseCard(props) {
   const navigate = useNavigate();
+
+  const submit = async () => {
+    const data = JSON.parse(localStorage.getItem("AuthCookie"));
+        try {
+          const d = new FormData();
+          d.append("email", data["email"]);
+          d.append("password", data["password"]);
+          d.append("course_id", props.course.id);
+         
+          const response = await fetch(`${process.env.REACT_APP_BACKEND}/course/deactivate`, {
+            method: "POST",
+            body: d,
+          });
+        
+          if (response.status === 200) {
+            window.location.reload();
+          } else {
+            const res = await response.json();
+            alert(res.detail);
+          }
+        } catch (error) {
+          alert("Unexpected Error Occurred!");
+          console.error("Error:", error);
+        }
+  }
+
   return (
     <div
-      className="bg-white border-[2.9px] border-neutral-200 w-[100%] h-[90%] rounded-2xl p-2 transition duration-500 flex flex-row justify-between pr-5"
+      className="bg-white border-[2.9px] border-neutral-200 w-[100%] h-[90%] rounded-2xl p-2 transition duration-500 flex flex-row justify-between pr-5 hover:cursor-pointer"
     >
         {/* Image */}
       <div className="h-full w-1/3 overflow-clip flex items-center justify-center rounded-xl ml-5">
@@ -25,7 +51,7 @@ export default function AdminCourseCard(props) {
         <div className="text-lg font-inter overflow-y-auto h-28 max-h-28 mt-5">{props.course.description}</div>
         <div className="flex flex-row justify-between items-end h-full">
             <div className="font-semibold text-dark-theme text-xl pb-2 pl-2">{props.course.teacher_name}</div>
-            <div className="flex justify-center items-center text-white bg-red-500 px-5 py-2 z-10 rounded-xl text-xl">Deactivate</div>
+            <div className="flex justify-center items-center text-white bg-red-500 px-5 py-2 z-10 rounded-xl text-xl" onClick={submit}>Deactivate</div>
         </div>
       </div>
     </div>

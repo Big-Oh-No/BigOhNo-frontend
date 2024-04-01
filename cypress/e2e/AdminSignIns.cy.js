@@ -26,6 +26,9 @@ describe('Visiting the website', () => {
     cy.scrollTo('bottom')
     //cy.wait(2000)
 
+    cy.scrollTo('bottom', { duration: 2000 })
+    cy.wait(2000)
+
     //check Admin Verify
     cy.get('.flex-row > :nth-child(3)').click()
     //cy.wait(2000)
@@ -38,6 +41,9 @@ describe('Visiting the website', () => {
     //Check admin add
     cy.get('.flex-row > :nth-child(5)').click()
     //cy.wait(2000)
+
+    // cy.scrollTo('bottom', { duration: 2000 })
+    // cy.wait(2000)
 
     // cy.scrollTo('bottom', { duration: 2000 })
     // cy.wait(2000)
