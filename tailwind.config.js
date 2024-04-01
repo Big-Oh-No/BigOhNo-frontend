@@ -10,7 +10,8 @@ module.exports = {
         'dark-theme': '#3644BE'
       },
       fontFamily: {
-        'inter': ['Inter', 'sans-serif']
+        'inter': ['Inter', 'sans-serif'],
+        'rock': ['Rock Salt', 'Inter']
       },
     },
   },

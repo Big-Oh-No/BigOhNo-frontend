@@ -1,4 +1,4 @@
-//Test Case 4: Student successfully Sign Ups 
+//Test Case 4: Teacher successfully Sign Ups 
 
 describe('Visiting the website', () => {
   beforeEach(() => {
