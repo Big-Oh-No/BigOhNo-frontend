@@ -9,36 +9,36 @@ describe('Visiting the website', () => {
   
   it('Sign In', () => {
     cy.visit('http://localhost:3000') //  visit the website
-    cy.wait(1000)
+    //cy.wait(1000)
 
     //enter email to sign in
-    cy.get('.mt-10 > .focus\\:outline-none').type('teacher@korse.com',{ delay: 100 })
-    cy.wait(1000)
+    cy.get('.mt-10 > .focus\\:outline-none').type('teacher@korse.com')
+    //cy.wait(1000)
 
     //enter password
-    cy.get('.w-\\[92\\.5\\%\\]').type('password',{ delay: 100 })
-    cy.wait(2000)
+    cy.get('.w-\\[92\\.5\\%\\]').type('password')
+    //cy.wait(2000)
 
     //Select Sign-In
-    cy.get('.mt-12 > .flex').click({ delay: 100 })
+    cy.get('.mt-12 > .flex').click()
     //cy.get('.mt-12 > .flex').invoke("show").click({ delay: 100 });
-    cy.wait(4000)
+   // cy.wait(4000)
 
     //Check profile
     cy.get('.flex-row > :nth-child(3)').click()
-    cy.wait(4000)
+    //cy.wait(4000)
 
     //select edit
-    cy.get('.absolute > .flex').click({ delay: 100 })
-    cy.wait(4000)
+    cy.get('.absolute > .flex').click()
+    //cy.wait(4000)
 
     //Change Office
     cy.get(':nth-child(3) > input').clear()
-    cy.get(':nth-child(3) > input').type('Fip 313',{ delay: 100 })
+    cy.get(':nth-child(3) > input').type('Fip 313')
 
 
     //Change bio
-    cy.get('textarea').type('Office Hours: 12pm-2pm.',{ delay: 200 })
+    cy.get('textarea').type('Office Hours: 12pm-2pm.')
 
     //Save
     //cy.get('.w-30.rounded-full > .rounded-full').click({ force: true, delay: 100 });
