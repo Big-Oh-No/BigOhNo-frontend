@@ -157,7 +157,7 @@ export default function CoursePage(props) {
           {data ? (
             <>
               <div className="h-[50%] w-[17%] left-0 top-1/4 fixed">
-                <SideBar changeHandler={(e) => setPage(e)} />
+                <SideBar data={data} changeHandler={(e) => setPage(e)} />
               </div>
               <div className="w-full">
                 {page === "syllabus" ? (

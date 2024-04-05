@@ -37,7 +37,7 @@ export default function SideBar(props) {
           style={{ boxShadow: "0 0 20px rgba(0, 0, 0, 0.14)" }}
         >
           <div className="text-white font-bold text-5xl mt-5 font-inter">
-            COSC 101
+          {props.data.meta.dept} {props.data.meta.code}
           </div>
           <div className="h-10"></div>
           <div
