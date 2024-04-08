@@ -1,14 +1,21 @@
+// Importing necessary hooks and components from React
 import { useState } from "react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import VerificationRequests from "../../models/verification_requests";
 
+// Functional component for admin verification
 export default function AdminVerify() {
-  const [requests, setRequests] = useState([]);
-  const navigate = useNavigate();
+  // State variables
+  const [requests, setRequests] = useState([]); // State for verification requests
+  const navigate = useNavigate(); // Hook for navigating between routes
+
+  // Function to handle approval of verification requests
   const handleApprove = async (user_email, name) => {
     try {
+      // Fetching authentication token from localStorage
       const data = JSON.parse(localStorage.getItem("AuthCookie"));
+      // Sending PATCH request to backend to approve verification
       const response = await fetch(
         `${process.env.REACT_APP_BACKEND}/user/verify`,
         {
@@ -24,26 +31,37 @@ export default function AdminVerify() {
         }
       );
 
+      // Handling response from the server
       if (response.status === 200) {
+        // If verification is successful, reinitialize data and show alert
         init();
-        showAlert(`${name} verified sucessfully!`);
+        showAlert(`${name} verified successfully!`);
       } else {
+        // If verification fails, show error message from server
         const detail = await response.json();
         showAlert(detail["detail"]);
       }
     } catch (error) {
+      // Catching unexpected errors
       showAlert("Unexpected error occurred");
     }
   };
 
+  // Function to display alerts
   const showAlert = (message) => {
     alert(`${message}`);
   };
+
+  // useEffect hook to initialize data when component mounts
   useEffect(() => init, []);
+
+  // Function to initialize verification requests
   const init = async () => {
+    // Fetching authentication token from localStorage
     const data = JSON.parse(localStorage.getItem("AuthCookie"));
 
     try {
+      // Sending POST request to backend to fetch verification status
       const response = await fetch(
         `${process.env.REACT_APP_BACKEND}/user/verification_status`,
         {
@@ -58,7 +76,9 @@ export default function AdminVerify() {
         }
       );
 
+      // Handling response from the server
       if (response.status === 200) {
+        // If request is successful, parse response and update state
         const response_json = await response.json();
         console.log(response_json.length);
         let request_array = [];
@@ -73,15 +93,18 @@ export default function AdminVerify() {
         }
         setRequests(request_array);
       } else {
+        // If request fails, remove authentication token and navigate to login page
         localStorage.removeItem("AuthCookie");
         navigate("/");
         return;
       }
     } catch (error) {
+      // Catching unexpected errors
       return;
     }
   };
 
+  // Rendering component JSX
   return (
     <div className="w-screen h-screen flex flex-col">
       <div className="text-5xl font-bold font-inter pt-10 w-full pl-10 pb-10 z-20">

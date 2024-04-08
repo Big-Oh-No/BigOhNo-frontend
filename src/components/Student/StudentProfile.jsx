@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencil } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 
-export default function AdminProfile(props) {
+export default function StudentProfile(props) {
   const navigate = useNavigate();
   // destructure
   const { user } = props;
