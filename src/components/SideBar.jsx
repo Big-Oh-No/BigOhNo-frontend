@@ -91,7 +91,7 @@ export default function SideBar(props) {
           </div>
           <div
             className={`w-[70%] h-14 ${
-              current === "discussions"
+              current === "logout"
                 ? "text-white bg-black"
                 : "bg-white text-black hover:text-white hover:bg-black"
             } rounded-2xl flex items-center justify-center text-xl hover:scale-105 transition duration-300 hover:cursor-pointer shadow`}
