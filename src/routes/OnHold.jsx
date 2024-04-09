@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 
+// Component to display the on hold page
 export default function OnHold() {
   const navigate = useNavigate();
   useEffect(() => {

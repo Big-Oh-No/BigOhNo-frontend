@@ -1,3 +1,4 @@
+// Represents course for student and teacher use with associated fields
 export default class StudentTeacherCourse {
     constructor({meta, assignments, teacher_email, teacher_profile_url = null, teacher_office = null, teacher_contact = null}) {
         this.meta = meta;

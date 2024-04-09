@@ -1,3 +1,4 @@
+// Represents Student assignments with associated fields
 export default class StudentAssignmentModel {
     constructor ({
         id,

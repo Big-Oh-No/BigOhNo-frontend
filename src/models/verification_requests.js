@@ -1,3 +1,4 @@
+// Represents verification request with associated fields
 export default class VerificationRequests {
     constructor({firstName,  email, role, lastName = null}) {
         this.firstName = firstName;
