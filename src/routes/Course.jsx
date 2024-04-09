@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import AccessDenied from "./AccessDenied";
 import SideBar from "../components/SideBar";
 import Syllabus from "../components/course/Syllabus";
-import Discussions from "../components/course/Discussions";
+import Discussions from "../components/course/Discussions/Discussions";
 import StudentAssignments from "../components/course/StudentAssignments";
 import TeacherAssignments from "../components/course/TeacherAssignments";
 import Course from "../models/course";
