@@ -1,3 +1,4 @@
+// Represents student submissions with associated fields
 export default class StudentSubmissionsModel {
     constructor ({
         student_email,

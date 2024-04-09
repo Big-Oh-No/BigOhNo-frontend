@@ -9,6 +9,7 @@ import Admin from "../models/admin";
 import Teacher from "../models/teacher";
 import Student from "../models/student";
 
+// Component to display the Dashboard
 export default function Dashboard() {
   const navigate = useNavigate();
   const [profile, setProfile] = useState();

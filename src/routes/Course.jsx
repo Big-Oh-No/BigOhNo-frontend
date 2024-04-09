@@ -12,6 +12,7 @@ import StudentTeacherCourse from "../models/student_teacher_course";
 import StudentSubmissionsModel from "../models/student_submissions";
 import TeacherAssignmentModel from "../models/teacher_assignment";
 
+// Component to display the Course page
 export default function CoursePage(props) {
   const params = useParams();
   const navigate = useNavigate();

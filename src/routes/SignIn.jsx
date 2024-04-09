@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import SignInForm from "../components/SignInForm";
 import { useEffect } from "react";
 
+// Component to display the Sign In page
 export default function SignIn() {
     const navigate = useNavigate();
     useEffect(() => {

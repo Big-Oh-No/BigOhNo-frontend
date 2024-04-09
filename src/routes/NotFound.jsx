@@ -1,5 +1,6 @@
 import PageNotFound from "../components/PageNotFound";
 
+// Component to display the page not found page
 export default function NotFound() {
   return (
     <div className="flex flex-row-reverse w-screen h-screen">

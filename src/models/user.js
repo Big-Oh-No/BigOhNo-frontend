@@ -1,3 +1,4 @@
+// Represents user with associated fields
 export default class User {
     constructor({id, first_name, email, role, verified, last_name=null, bio=null, gender=null, pronouns=null, profile_image=null}) {
         this.id = id;

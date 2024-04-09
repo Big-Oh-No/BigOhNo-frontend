@@ -1,3 +1,4 @@
+// Represents course with associated fields
 export default class Course {
     constructor({ id, dept, code, name, term, year, credits, total_seats, taken_seats, status, teacher_name, description = null, syllabus_url = null, image_url = null }) {
         this.id = id;
