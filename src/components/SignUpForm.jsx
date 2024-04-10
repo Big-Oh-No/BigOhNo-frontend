@@ -89,6 +89,7 @@ export default function SignUpForm() {
         <div className="w-[45%] space-y-1">
           <div className="text-xl font-semibold">First Name</div>
           <input
+          testname="firstname"
             className="px-5 w-full focus:outline-none bg-light-theme border-[0.075rem] border-black h-14 text-lg rounded-xl"
             value={firstName}
             onChange={(e) => {
@@ -99,6 +100,7 @@ export default function SignUpForm() {
         <div className="w-[45%] space-y-1">
           <div className="text-xl font-semibold">Last Name</div>
           <input
+          testname="lastname"
             className="px-5 w-full focus:outline-none bg-light-theme border-[0.075rem] border-black h-14 text-lg rounded-xl"
             value={lastName}
             onChange={(e) => {
@@ -111,6 +113,7 @@ export default function SignUpForm() {
       <div className="mt-5 flex flex-col space-y-1">
         <div className="text-xl font-semibold">Email</div>
         <input
+        testname="email"
           className="px-5 w-full focus:outline-none bg-light-theme border-[0.075rem] border-black h-14 text-lg rounded-xl"
           value={email}
           onChange={(e) => {
@@ -123,6 +126,7 @@ export default function SignUpForm() {
         <div className="flex flex-col w-[45%] space-y-1">
           <div className="text-xl font-semibold">Create Password</div>
           <input
+          testname="password"
             type="password"
             className="px-5 w-full focus:outline-none bg-light-theme border-[0.075rem] border-black h-14 text-lg rounded-xl"
             value={password}
@@ -134,6 +138,7 @@ export default function SignUpForm() {
         <div className="flex flex-col w-[45%] space-y-1">
           <div className="text-xl font-semibold">Confirm Password</div>
           <input
+          testname="confirmpassword"
             type="password"
             className="px-5 w-full focus:outline-none bg-light-theme border-[0.075rem] border-black h-14 text-lg rounded-xl"
             value={confirmPassword}
@@ -148,6 +153,7 @@ export default function SignUpForm() {
         <div className="text-xl font-semibold mt-5">Your Role</div>
         <div className="flex flex-row justify-between mt-2">
           <div
+          testname="teacher"
             className={`hover:cursor-pointer select-none flex flex-col w-[30%] h-14 border ${
               buttonValue === "teacher"
                 ? "bg-dark-theme text-white border-transparent scale-125"
@@ -158,6 +164,7 @@ export default function SignUpForm() {
             Teacher
           </div>
           <div
+          testname="student"
             className={`hover:cursor-pointer select-none flex flex-col w-[30%] h-14 border ${
               buttonValue === "student"
                 ? "bg-dark-theme text-white border-transparent scale-125"
@@ -168,6 +175,7 @@ export default function SignUpForm() {
             Student
           </div>
           <div
+          testname="admin"
             className={`hover:cursor-pointer select-none flex flex-col w-[30%] h-14 border ${
               buttonValue === "admin"
                 ? "bg-dark-theme text-white border-transparent scale-125"
@@ -182,6 +190,7 @@ export default function SignUpForm() {
       {/* Submit button */}
       <div className="flex flex-row justify-center">
         <div
+          testname="submit-button"
           className="flex items-center justify-center w-[25%] mt-16 rounded-full border-black font-inter text-2xl bg-dark-theme font-semibold hover:cursor-pointer py-3 hover:bg-light-theme border border-transparent hover:border-black text-white hover:text-black transition duration-500 hover:scale-125 select-none"
           onClick={() => {
             formSubmit();
@@ -192,7 +201,7 @@ export default function SignUpForm() {
       </div>
       {/* Error message display */}
       {errMessage && (
-        <div className="flex justify-center items-center mt-8 text-1xl text-red-500">
+        <div className="flex justify-center items-center mt-8 text-1xl text-red-500" testname="warn">
           {errMessage}
         </div>
       )}

@@ -11,6 +11,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export default function NavButton(props) {
   return (
     <div
+      name={`${props.name}-button`}
       className={`text-2xl text-black ${
         props.name === props.option
           ? "bg-dark-theme text-white hover:opacity-90"

@@ -65,6 +65,7 @@ export default function SignInForm() {
       <div className="flex flex-col mt-10 space-y-3 pl-3">
         <div className="text-xl font-semibold">Email</div>
         <input
+          name="email"
           type="email"
           className="focus:outline-none w-full bg-light-theme border-[0.075rem] border-black h-14 text-lg rounded-xl p-2 px-4"
           value={email}
@@ -75,6 +76,7 @@ export default function SignInForm() {
         <div className="text-xl font-semibold">Password</div>
         <div className="w-full bg-light-theme border-[0.075rem] border-black h-14 text-lg rounded-xl flex flex-row">
           <input
+            name="password"
             className="w-[92.5%] p-2 px-4 focus:outline-none bg-light-theme rounded-xl "
             type={showPassword ? "" : "password"}
             value={password}
@@ -101,6 +103,7 @@ export default function SignInForm() {
       <div className="pl-3 mt-2 text-lg select-none">
         Don't have an account?{" "}
         <div
+        testname="signup-button"
           className="inline text-dark-theme font-semibold hover:underline hover:cursor-pointer"
           onClick={() => navigate("/signup")}
         >
@@ -109,6 +112,7 @@ export default function SignInForm() {
       </div>
       <div className="flex flex-row justify-center mt-12">
         <div
+          name="signin"
           className="flex justify-center items-center text-white bg-dark-theme text-2xl w-[25%] py-3 rounded-full border-[0.075rem] border-transparent hover:bg-light-theme hover:border-[0.075rem] hover:border-black font-semibold hover:cursor-pointer hover:text-dark-theme transition duration-500"
           onClick={() => {
             submitForm();
