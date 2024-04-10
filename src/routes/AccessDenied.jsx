@@ -1,5 +1,5 @@
 import React from "react";
-
+// Component to display the access denied page
 function AccessDenied() {
   return (
     <div className="flex flex-row-reverse w-screen h-screen">

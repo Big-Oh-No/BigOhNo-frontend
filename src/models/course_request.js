@@ -1,3 +1,4 @@
+// Represents course request with associated fields
 export default class CourseRequest {
     constructor({ id, dept, code, name, term, year, credits, total_seats, taken_seats, status, teacher_name, description = null, syllabus_url = null, image_url = null, comment = null}) {
         this.id = id;

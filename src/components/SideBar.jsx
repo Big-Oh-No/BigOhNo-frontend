@@ -31,13 +31,13 @@ export default function SideBar(props) {
       <div className="h-full w-full flex flex-col justify-center">
         <div
           onMouseLeave={hideSidebar}
-          className={`h-full w-full bg-dark-theme flex flex-col items-center py-10 space-y-5 rounded-br-[100px] rounded-tr-[100px] ${
+          className={`h-full w-full bg-dark-theme flex flex-col items-center py-10 space-y-2 rounded-br-[50px] rounded-tr-[50px] ${
             sidebarVisible ? "translate-x-0" : "-translate-x-full"
           } transition-transform duration-300 ease-in-out`}
           style={{ boxShadow: "0 0 20px rgba(0, 0, 0, 0.14)" }}
         >
-          <div className="text-white font-bold text-5xl mt-5 font-inter">
-            COSC 101
+          <div className="text-white font-bold text-5xl font-inter">
+            {props.data.meta.dept} {props.data.meta.code}
           </div>
           <div className="h-10"></div>
           <div
@@ -88,6 +88,19 @@ export default function SideBar(props) {
             }}
           >
             Discussions
+          </div>
+          <div
+            className={`w-[70%] h-14 ${
+              current === "logout"
+                ? "text-white bg-black"
+                : "bg-white text-black hover:text-white hover:bg-black"
+            } rounded-2xl flex items-center justify-center text-xl hover:scale-105 transition duration-300 hover:cursor-pointer shadow`}
+            onClick={() => {
+              localStorage.removeItem("AuthCookie");
+              navigate("/");
+            }}
+          >
+            Logout
           </div>
         </div>
       </div>

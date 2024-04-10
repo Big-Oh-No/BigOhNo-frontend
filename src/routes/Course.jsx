@@ -12,6 +12,7 @@ import StudentTeacherCourse from "../models/student_teacher_course";
 import StudentSubmissionsModel from "../models/student_submissions";
 import TeacherAssignmentModel from "../models/teacher_assignment";
 
+// Component to display the Course page
 export default function CoursePage(props) {
   const params = useParams();
   const navigate = useNavigate();
@@ -157,7 +158,7 @@ export default function CoursePage(props) {
           {data ? (
             <>
               <div className="h-[50%] w-[17%] left-0 top-1/4 fixed">
-                <SideBar changeHandler={(e) => setPage(e)} />
+                <SideBar data={data} changeHandler={(e) => setPage(e)} />
               </div>
               <div className="w-full">
                 {page === "syllabus" ? (

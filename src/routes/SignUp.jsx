@@ -2,6 +2,7 @@ import SignUpForm from "../components/SignUpForm";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
+// Component to display the Sign up page
 export default function SignUp() {
   const navigate = useNavigate();
   useEffect(() => {

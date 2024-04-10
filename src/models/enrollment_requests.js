@@ -1,3 +1,4 @@
+// Represents enrollment request with associated fields
 export default class EnrollmentRequests {
     constructor({student_id, course_id, firstName,  email, dept, code, term, year, lastName = null}) {
         this.student_id = student_id;
