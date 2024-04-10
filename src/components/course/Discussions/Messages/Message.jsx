@@ -33,7 +33,7 @@ export default function Message(props) {
         />
       )}
       <div className="flex flex-col space-y-1">
-        <div className="text-xl text-dark-theme font-semibold">John Doe {showDate ? <span className="pl-2 text-neutral-400 font-normal">{formatDate(props.message.date_created)}</span>:<></>}</div>
+        <div className="text-xl text-dark-theme font-semibold">{props.message.author_name} {showDate ? <span className="pl-2 text-neutral-400 font-normal">{formatDate(props.message.date_created)}</span>:<></>}</div>
         <div className="text-xl">
             {props.message.message}
         </div>

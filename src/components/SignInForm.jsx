@@ -81,6 +81,11 @@ export default function SignInForm() {
             type={showPassword ? "" : "password"}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' && password.trim() !== "") {
+                submitForm();
+              }
+            }}
           />
           <div
             className="w-[7.5%]h-full flex justify-center items-center"

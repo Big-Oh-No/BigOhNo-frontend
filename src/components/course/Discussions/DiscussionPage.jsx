@@ -76,6 +76,7 @@ export default function DiscussionPage(props) {
       </div>
       <div className="h-[10%] w-full flex flex-row items-center justify-around px-5">
         <input
+        placeholder="Type a message..."
           className="w-[90%] text-xl px-[1rem] rounded-xl border-black border py-[1rem] shadow-lg bg-dark-theme bg-opacity-15 text-black"
           value={message}
           onChange={(e) => setMessage(e.target.value)}

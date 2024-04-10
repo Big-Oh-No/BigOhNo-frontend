@@ -79,6 +79,8 @@ export default function SideBar(props) {
                 if (page === "logout") {
                   localStorage.removeItem("AuthCookie");
                   navigate("/");
+                } else if (page === "dashboard") {
+                  navigate("/dashboard");
                 } else {
                   onChangePage(page);
                 }
