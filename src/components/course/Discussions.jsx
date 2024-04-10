@@ -1,14 +1,19 @@
 import React, { useState } from "react";
 
 export default function Discussions() {
+  // State to manage discussions
   const [discussions, setDiscussions] = useState([]);
+  // State to hold new discussion text
   const [newDiscussionText, setNewDiscussionText] = useState("");
-  const [replyText, setReplyText] = useState(""); // State to hold reply text
+  // State to hold reply text
+  const [replyText, setReplyText] = useState("");
 
+  // Function to handle change in new discussion text input
   const handleNewDiscussionChange = (event) => {
     setNewDiscussionText(event.target.value);
   };
 
+  // Function to handle submission of a new discussion
   const handleNewDiscussionSubmit = (event) => {
     event.preventDefault();
     if (newDiscussionText.trim() !== "") {
@@ -22,12 +27,14 @@ export default function Discussions() {
     }
   };
 
+  // Function to handle change in reply text input
   const handleReplyChange = (event) => {
     setReplyText(event.target.value);
   };
 
+  // Function to handle submission of a reply to a discussion
   const handleReplySubmit = (event, discussionId) => {
-    event.preventDefault(); // Prevent default form submission
+    event.preventDefault();
     if (replyText.trim() !== "") {
       const updatedDiscussions = discussions.map((discussion) => {
         if (discussion.id === discussionId) {

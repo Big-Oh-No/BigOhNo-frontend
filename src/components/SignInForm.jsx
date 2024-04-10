@@ -1,9 +1,12 @@
-import { json, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye } from "@fortawesome/free-solid-svg-icons";
-import { faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 
+/**
+ * Sign-in form component
+ * @returns {JSX.Element} Sign-in form component
+ */
 export default function SignInForm() {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
@@ -11,9 +14,12 @@ export default function SignInForm() {
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
+  /**
+   * Function to submit the form
+   */
   const submitForm = async () => {
     if (isValid()) {
-      try{
+      try {
         const response = await fetch(`${process.env.REACT_APP_BACKEND}/user/login`, {
           method: "POST",
           headers: {
@@ -24,21 +30,24 @@ export default function SignInForm() {
             password: password,
           })
         });
-  
+
         if (response.status === 200) {
-          localStorage.setItem("AuthCookie", JSON.stringify({email:email,password:password}))
+          localStorage.setItem("AuthCookie", JSON.stringify({ email: email, password: password }));
           navigate("/dashboard");
         } else {
           const detail = await response.json();
           setErrorMessage(detail["detail"]);
         }
-      }catch(error){
-        setErrorMessage("Unexpected error occurred")
+      } catch (error) {
+        setErrorMessage("Unexpected error occurred");
       }
-     
     }
   };
 
+  /**
+   * Function to validate the form fields
+   * @returns {boolean} Validation result
+   */
   const isValid = () => {
     if (!email) {
       setErrorMessage("Please enter a valid email!");
