@@ -1,5 +1,13 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+/**
+ * Component to render a navigation button
+ * @param {Object} props - Component props
+ * @param {string} props.name - Name of the button
+ * @param {string} props.option - Currently selected option
+ * @param {function} props.onClick - Function to handle button click
+ * @param {object} props.icon - Icon for the button
+ */
 export default function NavButton(props) {
   return (
     <div

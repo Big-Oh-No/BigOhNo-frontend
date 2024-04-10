@@ -1,7 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+/**
+ * Sign-up form component
+ * @returns {JSX.Element} Sign-up form component
+ */
 export default function SignUpForm() {
+  // State variables for form fields and error message
   const [buttonValue, setButtonValue] = useState("none");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -11,6 +16,7 @@ export default function SignUpForm() {
   const [errMessage, setErrMessage] = useState("");
   const navigate = useNavigate();
 
+  // Function to submit the form
   const formSubmit = async () => {
     if (isValid()) {
       try {
@@ -45,6 +51,8 @@ export default function SignUpForm() {
       }
     }
   };
+
+  // Function to validate the form fields
   const isValid = () => {
     if (password !== confirmPassword) {
       setErrMessage("Passwords do not match!");
@@ -71,10 +79,12 @@ export default function SignUpForm() {
 
   return (
     <div className="flex flex-col w-full h-full px-20 pt-24">
+      {/* Sign-up form */}
       <div className="text-5xl font-bold font-inter">
         Welcome to <div className="text-dark-theme inline">Korse!</div>
       </div>
-      <div className=" flex flex-col text-4xl font-bold mt-20">Sign Up</div>
+      <div className="flex flex-col text-4xl font-bold mt-20">Sign Up</div>
+      {/* First name and last name fields */}
       <div className="flex flex-row justify-between mt-8">
         <div className="w-[45%] space-y-1">
           <div className="text-xl font-semibold">First Name</div>
@@ -97,6 +107,7 @@ export default function SignUpForm() {
           ></input>
         </div>
       </div>
+      {/* Email field */}
       <div className="mt-5 flex flex-col space-y-1">
         <div className="text-xl font-semibold">Email</div>
         <input
@@ -107,6 +118,7 @@ export default function SignUpForm() {
           }}
         ></input>
       </div>
+      {/* Password fields */}
       <div className="flex flex-row justify-between mt-5">
         <div className="flex flex-col w-[45%] space-y-1">
           <div className="text-xl font-semibold">Create Password</div>
@@ -131,6 +143,7 @@ export default function SignUpForm() {
           ></input>
         </div>
       </div>
+      {/* Role selection */}
       <div className="flex flex-col">
         <div className="text-xl font-semibold mt-5">Your Role</div>
         <div className="flex flex-row justify-between mt-2">
@@ -166,6 +179,7 @@ export default function SignUpForm() {
           </div>
         </div>
       </div>
+      {/* Submit button */}
       <div className="flex flex-row justify-center">
         <div
           className="flex items-center justify-center w-[25%] mt-16 rounded-full border-black font-inter text-2xl bg-dark-theme font-semibold hover:cursor-pointer py-3 hover:bg-light-theme border border-transparent hover:border-black text-white hover:text-black transition duration-500 hover:scale-125 select-none"
@@ -176,6 +190,7 @@ export default function SignUpForm() {
           Submit
         </div>
       </div>
+      {/* Error message display */}
       {errMessage && (
         <div className="flex justify-center items-center mt-8 text-1xl text-red-500">
           {errMessage}
