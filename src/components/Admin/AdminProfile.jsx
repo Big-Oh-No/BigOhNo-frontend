@@ -1,12 +1,11 @@
-import React from "react";
-import { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPencil } from "@fortawesome/free-solid-svg-icons";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react"; // Importing React and useState hook
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; // Importing FontAwesomeIcon from Font Awesome
+import { faPencil } from "@fortawesome/free-solid-svg-icons"; // Importing the pencil icon from Font Awesome
+import { useNavigate } from "react-router-dom"; // Importing useNavigate hook from React Router
 
 export default function AdminProfile(props) {
-  const navigate = useNavigate();
-  // destructure
+  const navigate = useNavigate(); // Accessing the navigate function from React Router
+  // Destructuring props
   const { user } = props;
   const {
     first_name,
@@ -19,7 +18,7 @@ export default function AdminProfile(props) {
     profile_image,
   } = user.user;
 
-  // state management
+  // State variables
   const [contact, setContact] = useState(user.contact);
   const [office, setOffice] = useState(user.office);
   const [userBio, setUserBio] = useState(bio);
@@ -28,35 +27,37 @@ export default function AdminProfile(props) {
   const [userProfileImage, setProfileImage] = useState(profile_image);
   const [edit, setEdit] = useState(false);
 
+  // Function to handle click event for editing profile
   const handleEditClick = () => {
     setEdit(true);
   };
 
+  // Function to handle saving profile changes
   const handleSave = async () => {
     try {
-      const data = JSON.parse(localStorage.getItem("AuthCookie"));
+      const data = JSON.parse(localStorage.getItem("AuthCookie")); // Retrieving authentication cookie from local storage
 
-      const d = new FormData();
+      const formData = new FormData();
 
-      d.append("email", data["email"]);
-      d.append("password", data["password"]);
-      d.append("bio", userBio);
-      d.append("gender", userGender);
-      d.append("pronouns", userPronouns);
-      if (userProfileImage) d.append("profile_image", userProfileImage);
-      d.append("contact", contact);
-      d.append("office", office);
+      formData.append("email", data["email"]);
+      formData.append("password", data["password"]);
+      formData.append("bio", userBio);
+      formData.append("gender", userGender);
+      formData.append("pronouns", userPronouns);
+      if (userProfileImage) formData.append("profile_image", userProfileImage);
+      formData.append("contact", contact);
+      formData.append("office", office);
 
       const response = await fetch(
         `${process.env.REACT_APP_BACKEND}/user/edit`,
         {
           method: "PATCH",
-          body: d
+          body: formData
         }
       );
 
       if (response.status === 200) {
-        navigate("/");
+        navigate("/"); // Navigating user to the home page after saving changes
         setEdit(false);
       } else {
         const detail = await response.json();
@@ -67,11 +68,14 @@ export default function AdminProfile(props) {
     }
   };
 
+  // JSX code for rendering AdminProfile component
   return (
     <div className="w-screen h-screen">
+      {/* Header */}
       <div className="absolute font-inter font-bold text-5xl pl-12 pt-10">
         Profile
       </div>
+      {/* Main content */}
       <div className="flex items-center justify-center w-screen h-screen">
         <div className="bg-light-theme rounded-2xl shadow-lg h-[75%] w-[30%]">
           <div className="flex flex-col justify-center items-center">
@@ -85,6 +89,7 @@ export default function AdminProfile(props) {
                 alt="Profile"
                 className="rounded-full h-40 w-40"
               />
+              {/* Render input field for profile image if in edit mode */}
               {edit && (
                 <div className="mt-4">
                   <input
@@ -105,9 +110,11 @@ export default function AdminProfile(props) {
             <p className="font-inter">{role}</p>
             <p className="font-inter">{email}</p>
           </div>
+          {/* Profile information */}
           <div className="flex flex-col justify-between pl-7 mt-10 font-inter text-lg space-y-4">
             <div>
               <div className="font-semibold inline">Contact:</div>{" "}
+              {/* Render input field for contact if in edit mode */}
               {edit ? (
                 <input
                   type="text"
@@ -120,6 +127,7 @@ export default function AdminProfile(props) {
             </div>
             <div>
               <div className="font-semibold inline">Office:</div>{" "}
+              {/* Render input field for office if in edit mode */}
               {edit ? (
                 <input
                   type="text"
@@ -132,6 +140,7 @@ export default function AdminProfile(props) {
             </div>
             <div>
               <div className="font-semibold inline">Pronouns:</div>{" "}
+              {/* Render input field for pronouns if in edit mode */}
               {edit ? (
                 <input
                   type="text"
@@ -144,6 +153,7 @@ export default function AdminProfile(props) {
             </div>
             <div>
               <div className="font-semibold inline">Gender:</div>{" "}
+              {/* Render select dropdown for gender if in edit mode */}
               {edit ? (
                 <select
                   className="focus:outline-none bg-light-theme border-[0.075rem] border-black p-2 text-lg rounded-xl"
@@ -163,6 +173,7 @@ export default function AdminProfile(props) {
             </div>
             <div>
               <div className="font-semibold inline">Bio:</div>{" "}
+              {/* Render textarea for bio if in edit mode */}
               {edit ? (
                 <textarea
                   value={userBio}
@@ -172,6 +183,7 @@ export default function AdminProfile(props) {
                 user.user.bio
               )}
             </div>
+            {/* Save and Cancel buttons */}
             {edit ? (
               <div className="flex flex-row justify-between items-center pl-10 pr-14 pt-7">
                 <div className="w-[30%] rounded-full">
@@ -193,6 +205,7 @@ export default function AdminProfile(props) {
               </div>
             ) : (
               <div className="absolute top-32 right-[36%]">
+                {/* Render edit icon if not in edit mode */}
                 <div
                   className="flex justify-end pr-5 pt-5 text-3xl hover:cursor-pointer transition duration-500 select-none"
                   onClick={handleEditClick}
@@ -207,4 +220,3 @@ export default function AdminProfile(props) {
     </div>
   );
 }
-

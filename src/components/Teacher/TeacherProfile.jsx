@@ -1,12 +1,13 @@
 import React from "react";
-import { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPencil } from "@fortawesome/free-solid-svg-icons";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react"; // Importing useState hook from React
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; // Importing FontAwesomeIcon component
+import { faPencil } from "@fortawesome/free-solid-svg-icons"; // Importing Pencil icon from FontAwesome
+import { useNavigate } from "react-router-dom"; // Importing useNavigate hook from React Router
 
-export default function AdminProfile(props) {
-  const navigate = useNavigate();
-  // destructure
+export default function TeacherProfile(props) {
+  const navigate = useNavigate(); // Accessing the navigate function from React Router
+
+  // Destructuring props
   const { user } = props;
   const {
     first_name,
@@ -19,7 +20,7 @@ export default function AdminProfile(props) {
     profile_image,
   } = user.user;
 
-  // state management
+  // State management using useState hook
   const [faculty, setFaculty] = useState(user.faculty);
   const [contact, setContact] = useState(user.contact);
   const [office, setOffice] = useState(user.office);
@@ -27,18 +28,21 @@ export default function AdminProfile(props) {
   const [userPronouns, setUserPronouns] = useState(pronouns);
   const [userGender, setUserGender] = useState(gender);
   const [userProfileImage, setProfileImage] = useState(profile_image);
-  const [edit, setEdit] = useState(false);
+  const [edit, setEdit] = useState(false); // State to manage edit mode
 
+  // Function to handle clicking on the edit button
   const handleEditClick = () => {
-    setEdit(true);
+    setEdit(true); // Sets edit state to true to enable edit mode
   };
 
+  // Function to handle saving changes
   const handleSave = async () => {
     try {
-      const data = JSON.parse(localStorage.getItem("AuthCookie"));
+      const data = JSON.parse(localStorage.getItem("AuthCookie")); // Retrieving user authentication data from localStorage
 
-      const d = new FormData();
+      const d = new FormData(); // Creating FormData object for sending form data
 
+      // Appending user data to the FormData object
       d.append("email", data["email"]);
       d.append("password", data["password"]);
       d.append("bio", userBio);
@@ -49,26 +53,29 @@ export default function AdminProfile(props) {
       d.append("office", office);
       d.append("faculty", faculty);
 
+      // Sending PATCH request to backend API for updating user profile
       const response = await fetch(
         `${process.env.REACT_APP_BACKEND}/user/edit`,
         {
           method: "PATCH",
-          body: d
+          body: d // Sending FormData as request body
         }
       );
 
+      // Handling response from the server
       if (response.status === 200) {
-        navigate("/");
-        setEdit(false);
+        navigate("/"); // Navigating user to the home page after successful update
+        setEdit(false); // Exiting edit mode
       } else {
-        const detail = await response.json();
-        alert(detail["detail"]);
+        const detail = await response.json(); // Parsing response body
+        alert(detail["detail"]); // Displaying error message
       }
     } catch (error) {
-      alert("Unexpected error occurred");
+      alert("Unexpected error occurred"); // Handling unexpected errors
     }
   };
 
+  // JSX code for rendering TeacherProfile component
   return (
     <div className="w-screen h-screen">
       <div className="absolute font-inter font-bold text-5xl pl-12 pt-10">
@@ -211,7 +218,7 @@ export default function AdminProfile(props) {
                   className="flex justify-end pr-5 pt-5 text-3xl hover:cursor-pointer transition duration-500 select-none"
                   onClick={handleEditClick}
                 >
-                  <FontAwesomeIcon icon={faPencil} />
+                  <FontAwesomeIcon icon={faPencil} /> {/* Rendering edit icon */}
                 </div>
               </div>
             )}
