@@ -58,7 +58,7 @@ export default function StudentMCQ(props) {
   };
 
   // Function to handle submission of MCQ responses
-  const handleDone = () => {
+  const handleDone = async () => {
     if (responses.includes(null)) {
       // Alerting user to answer all questions before submission
       alert("Please answer all questions!");
@@ -75,7 +75,32 @@ export default function StudentMCQ(props) {
 
     // Setting status and marks based on evaluation
     setStatus(reval);
-    setMarks(score);
+    setMarks(score/(responses.length+0.0) * props.mcq.total_grade);
+
+    const data = JSON.parse(localStorage.getItem("AuthCookie"));
+        try {
+          const d = new FormData();
+          d.append("email", data["email"]);
+          d.append("password", data["password"]);
+          d.append("assignment_id", props.mcq.id);
+          d.append("student_email", data["email"]);
+          d.append("grade", score/(responses.length+0.0) * props.mcq.total_grade);
+         
+          const response = await fetch(`${process.env.REACT_APP_BACKEND}/course/grade_quiz`, {
+            method: "PATCH",
+            body: d,
+          });
+        
+          if (response.status === 201) {
+            alert(`Submitted`);
+          } else {
+            const res = await response.json();
+            alert(res.detail);
+          }
+        } catch (error) {
+          alert("Unexpected Error Occurred!");
+          console.error("Error:", error);
+        }
 
     // Further actions can be performed here based on the evaluation
   };
